@@ -134,6 +134,7 @@ public class LoginActivity extends AppCompatActivity {
                         SharedPrefManager.getInstance(LoginActivity.this).saveUser(loginResponse.getUser());
                         Toast.makeText(LoginActivity.this, "Login berhasil!", Toast.LENGTH_LONG).show();
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(intent);
                     }else {
                         Log.i("LOGIN CHECK", "onResponse  : FAILED");
