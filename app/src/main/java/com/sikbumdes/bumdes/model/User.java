@@ -13,12 +13,17 @@ public class User {
     @Expose
     private String company;
 
+    @SerializedName("email")
+    @Expose
+    private String email;
+
     @SerializedName("token")
     private String token;
 
-    public User(String id, String company, String token) {
+    public User(String id, String company, String email, String token) {
         this.id = id;
         this.company = company;
+        this.email = email;
         this.token = token;
     }
 
@@ -36,6 +41,14 @@ public class User {
 
     public void setCompany(String company) {
         this.company = company;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getToken() {

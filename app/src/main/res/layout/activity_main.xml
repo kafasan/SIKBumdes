@@ -110,7 +110,7 @@
                     android:layout_marginStart="@dimen/_17sdp"
                     android:layout_marginBottom="@dimen/_5sdp"
                     android:fontFamily="@font/mitr_regular"
-                    android:text="Judul"
+                    android:text="Pengelolaan Dasar"
                     android:textColor="@color/dark_slate_gray"
                     android:textSize="@dimen/_16ssp" />
 
@@ -155,7 +155,7 @@
                                     android:layout_marginStart="@dimen/_40sdp"
                                     android:layout_marginTop="@dimen/_2sdp"
                                     android:fontFamily="@font/rubik_regular"
-                                    android:text="Kelola Pos-Pos Akun"
+                                    android:text="Kelola pos-pos akun"
                                     android:textColor="@color/dim_gray"
                                     android:textSize="@dimen/_12ssp" />
 
@@ -224,7 +224,7 @@
                                     android:layout_marginStart="@dimen/_40sdp"
                                     android:layout_marginTop="@dimen/_2sdp"
                                     android:fontFamily="@font/rubik_regular"
-                                    android:text="Test"
+                                    android:text="Kelola nilai neraca sebelum adanya penyesuaian"
                                     android:textColor="@color/dim_gray"
                                     android:textSize="@dimen/_12ssp" />
 
@@ -293,7 +293,7 @@
                                     android:layout_marginStart="@dimen/_40sdp"
                                     android:layout_marginTop="@dimen/_2sdp"
                                     android:fontFamily="@font/rubik_regular"
-                                    android:text="Test"
+                                    android:text="Kelola perencanaan anggaran"
                                     android:textColor="@color/dim_gray"
                                     android:textSize="@dimen/_12ssp" />
 
@@ -333,7 +333,7 @@
                     android:layout_marginStart="@dimen/_17sdp"
                     android:layout_marginBottom="@dimen/_5sdp"
                     android:fontFamily="@font/mitr_regular"
-                    android:text="Judul"
+                    android:text="Menu Utama"
                     android:textColor="@color/dark_slate_gray"
                     android:textSize="@dimen/_16ssp" />
 
