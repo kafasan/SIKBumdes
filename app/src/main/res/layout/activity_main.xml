@@ -155,7 +155,7 @@
                                     android:layout_marginStart="@dimen/_40sdp"
                                     android:layout_marginTop="@dimen/_2sdp"
                                     android:fontFamily="@font/rubik_regular"
-                                    android:text="Test"
+                                    android:text="Kelola Pos-Pos Akun"
                                     android:textColor="@color/dim_gray"
                                     android:textSize="@dimen/_12ssp" />
 
