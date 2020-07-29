@@ -118,7 +118,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="@dimen/_25sdp"
-                    android:background="@color/colorPrimary"
+                    android:background="@drawable/button_primary"
                     android:fontFamily="@font/maven_pro_bold"
                     android:paddingStart="@dimen/_40sdp"
                     android:paddingEnd="@dimen/_40sdp"
