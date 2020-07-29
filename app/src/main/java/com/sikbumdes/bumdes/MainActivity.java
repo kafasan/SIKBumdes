@@ -15,7 +15,7 @@ import com.sikbumdes.bumdes.model.User;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     TextView company_name, company_email;
-    CardView cv_data_akun, cv_neraca_awal, cv_rencana_anggaran, cv_rencana_anggaran_bisnis,
+    CardView cv_data_akun, cv_neraca_awal, cv_rencana_anggaran,
             cv_jurnal, cv_buku_besar, cv_perubahan_ekuitas, cv_realisasi_anggaran, cv_neraca, cv_laba_rugi;
 
     @Override
@@ -28,7 +28,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         cv_data_akun = findViewById(R.id.cv_data_akun);
         cv_neraca_awal = findViewById(R.id.cv_neraca_awal);
         cv_rencana_anggaran = findViewById(R.id.cv_rencana_anggaran);
-        cv_rencana_anggaran_bisnis = findViewById(R.id.cv_rencana_anggaran_bisnis);
         cv_jurnal = findViewById(R.id.cv_jurnal);
         cv_buku_besar = findViewById(R.id.cv_buku_besar);
         cv_perubahan_ekuitas = findViewById(R.id.cv_perubahan_ekuitas);
@@ -43,7 +42,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         cv_data_akun.setOnClickListener(this);
         cv_neraca_awal.setOnClickListener(this);
         cv_rencana_anggaran.setOnClickListener(this);
-        cv_rencana_anggaran_bisnis.setOnClickListener(this);
         cv_jurnal.setOnClickListener(this);
         cv_buku_besar.setOnClickListener(this);
         cv_perubahan_ekuitas.setOnClickListener(this);
@@ -66,9 +64,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.cv_rencana_anggaran:
                 startActivity(new Intent(MainActivity.this, RencanaAnggaranActivity.class));
-                break;
-            case R.id.cv_rencana_anggaran_bisnis:
-                startActivity(new Intent(MainActivity.this, RencanaAnggaranBisnisActivity.class));
                 break;
             case R.id.cv_jurnal:
                 startActivity(new Intent(MainActivity.this, JurnalActivity.class));
