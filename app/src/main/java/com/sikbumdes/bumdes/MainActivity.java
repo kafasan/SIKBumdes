@@ -50,12 +50,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         cv_laba_rugi.setOnClickListener(this);
 
         ImageView iv_settings = findViewById(R.id.iv_settings);
-        iv_settings.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, SettingsActivity.class));
-            }
-        });
+        iv_settings.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, SettingsActivity.class)));
     }
 
     @Override
