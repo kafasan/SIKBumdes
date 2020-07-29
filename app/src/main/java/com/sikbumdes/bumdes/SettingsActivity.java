@@ -6,6 +6,7 @@ import androidx.cardview.widget.CardView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.google.android.material.button.MaterialButton;
@@ -15,6 +16,7 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
 
     LinearLayout cv_profile, cv_mngEmployee, cv_mngBusiness, cv_changePass, cv_logout;
     MaterialButton btn_upgrade;
+    ImageView back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +43,9 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
 
             }
         });
+
+        back = findViewById(R.id.iv_back);
+        back.setOnClickListener(view -> onBackPressed());
     }
 
 

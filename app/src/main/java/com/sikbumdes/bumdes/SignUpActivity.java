@@ -30,7 +30,7 @@ public class SignUpActivity extends AppCompatActivity {
 
     TextInputLayout tilCompany, tilAddress, tilPhone, tilEmail, tilPassword, tilConfPassword;
     TextInputEditText etCompany, etAddress, etPhone, etEmail, etPassword, etConfPassword;
-    ImageView login;
+    ImageView login, back;
     Button register;
     ProgressDialog loading;
 
@@ -68,6 +68,9 @@ public class SignUpActivity extends AppCompatActivity {
                 signUp();
             }
         });
+
+        back = findViewById(R.id.iv_back);
+        back.setOnClickListener(view -> onBackPressed());
     }
 
     public void signUp(){
