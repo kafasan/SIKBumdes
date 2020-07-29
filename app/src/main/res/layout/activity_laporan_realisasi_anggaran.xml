@@ -34,7 +34,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:fontFamily="@font/mitr_regular"
-                android:text="Laporan Perubahan Ekuitas"
+                android:text="Laporan Realisasi Anggaran"
                 android:textColor="@color/colorAccent"
                 android:textSize="@dimen/_16ssp" />
         </RelativeLayout>
@@ -51,7 +51,7 @@
                 android:layout_marginTop="@dimen/_8sdp"
                 android:layout_marginBottom="@dimen/_5sdp"
                 android:fontFamily="@font/rubik_light"
-                android:text="Total Ekuitas Akhir Periode"
+                android:text="Surplus/Defisit"
                 android:textAlignment="center"
                 android:textColor="@color/dark_slate_gray"
                 android:textSize="@dimen/_10ssp" />
@@ -130,7 +130,7 @@
         </LinearLayout>
 
         <androidx.core.widget.NestedScrollView
-            android:id="@+id/ns_ekuitas"
+            android:id="@+id/ns_rab"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="@dimen/_10sdp"
@@ -145,11 +145,70 @@
                 android:layout_marginBottom="@dimen/_8sdp"
                 android:orientation="vertical">
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginBottom="@dimen/_8sdp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_6sdp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/rubik_regular"
+                        android:text="Nama"
+                        android:textColor="@color/dim_gray"
+                        android:textSize="@dimen/_12ssp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_6sdp"
+                        android:layout_weight="0.4"
+                        android:fontFamily="@font/rubik_regular"
+                        android:text="Anggaran"
+                        android:textColor="@color/dim_gray"
+                        android:textSize="@dimen/_12ssp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_6sdp"
+                        android:layout_weight="0.5"
+                        android:fontFamily="@font/rubik_regular"
+                        android:text="Realisasi"
+                        android:textColor="@color/dim_gray"
+                        android:textSize="@dimen/_12ssp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/rubik_regular"
+                        android:text="%"
+                        android:textAlignment="textEnd"
+                        android:textColor="@color/dim_gray"
+                        android:textSize="@dimen/_12ssp" />
+
+                </LinearLayout>
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/mitr_regular"
-                    android:text="Modal Awal"
+                    android:text="Penerimaan"
+                    android:textColor="@color/dark_slate_gray"
+                    android:textSize="@dimen/_13ssp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/mitr_regular"
+                    android:text="Penerimaan Pendapatan Bumdes"
                     android:textColor="@color/dark_slate_gray"
                     android:textSize="@dimen/_13ssp" />
 
@@ -175,12 +234,126 @@
                         android:layout_marginStart="@dimen/_6sdp"
                         android:layout_weight="1"
                         android:fontFamily="@font/rubik_regular"
-                        android:text="Modal Disetor"
+                        android:text="Penerimaan Wisata"
                         android:textColor="@color/dim_gray"
                         android:textSize="@dimen/_12ssp" />
 
                     <TextView
-                        android:id="@+id/tv_modalsetor"
+                        android:id="@+id/tv_wisata"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/rubik_regular"
+                        android:text="00000"
+                        android:textAlignment="textEnd"
+                        android:textColor="@color/dim_gray"
+                        android:textSize="@dimen/_12ssp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginBottom="@dimen/_8sdp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="@dimen/_10sdp"
+                        android:layout_height="@dimen/_10sdp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/layout_circle"
+                        android:tint="@color/colorPastel_3" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_6sdp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/rubik_regular"
+                        android:text="Penerimaan Homestay"
+                        android:textColor="@color/dim_gray"
+                        android:textSize="@dimen/_12ssp" />
+
+                    <TextView
+                        android:id="@+id/tv_homestay"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/rubik_regular"
+                        android:text="00000"
+                        android:textAlignment="textEnd"
+                        android:textColor="@color/dim_gray"
+                        android:textSize="@dimen/_12ssp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginBottom="@dimen/_8sdp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="@dimen/_10sdp"
+                        android:layout_height="@dimen/_10sdp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/layout_circle"
+                        android:tint="@color/colorPastel_3" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_6sdp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/rubik_regular"
+                        android:text="Penerimaan Resto"
+                        android:textColor="@color/dim_gray"
+                        android:textSize="@dimen/_12ssp" />
+
+                    <TextView
+                        android:id="@+id/tv_resto"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/rubik_regular"
+                        android:text="00000"
+                        android:textAlignment="textEnd"
+                        android:textColor="@color/dim_gray"
+                        android:textSize="@dimen/_12ssp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginBottom="@dimen/_8sdp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="@dimen/_10sdp"
+                        android:layout_height="@dimen/_10sdp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/layout_circle"
+                        android:tint="@color/colorPastel_3" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_6sdp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/rubik_regular"
+                        android:text="Penerimaan Event"
+                        android:textColor="@color/dim_gray"
+                        android:textSize="@dimen/_12ssp" />
+
+                    <TextView
+                        android:id="@+id/tv_event"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/rubik_regular"
@@ -202,7 +375,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_8sdp"
                     android:fontFamily="@font/mitr_regular"
-                    android:text="Saldo Laba"
+                    android:text="Penerimaan Penyertaan Modal"
                     android:textColor="@color/dark_slate_gray"
                     android:textSize="@dimen/_13ssp" />
 
@@ -228,12 +401,88 @@
                         android:layout_marginStart="@dimen/_6sdp"
                         android:layout_weight="1"
                         android:fontFamily="@font/rubik_regular"
-                        android:text="Saldo Laba Ditahan"
+                        android:text="Penyertaan Modal Desa"
                         android:textColor="@color/dim_gray"
                         android:textSize="@dimen/_12ssp" />
 
                     <TextView
-                        android:id="@+id/tv_saldotahan"
+                        android:id="@+id/tv_modaldesa"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/rubik_regular"
+                        android:text="00000"
+                        android:textAlignment="textEnd"
+                        android:textColor="@color/dim_gray"
+                        android:textSize="@dimen/_12ssp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginBottom="@dimen/_8sdp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="@dimen/_10sdp"
+                        android:layout_height="@dimen/_10sdp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/layout_circle"
+                        android:tint="@color/colorPastel_8" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_6sdp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/rubik_regular"
+                        android:text="Penyertaan Modal Masyarakat"
+                        android:textColor="@color/dim_gray"
+                        android:textSize="@dimen/_12ssp" />
+
+                    <TextView
+                        android:id="@+id/tv_masyarakat"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/rubik_regular"
+                        android:text="00000"
+                        android:textAlignment="textEnd"
+                        android:textColor="@color/dim_gray"
+                        android:textSize="@dimen/_12ssp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginBottom="@dimen/_8sdp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="@dimen/_10sdp"
+                        android:layout_height="@dimen/_10sdp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/layout_circle"
+                        android:tint="@color/colorPastel_8" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_6sdp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/rubik_regular"
+                        android:text="Penyertaan Modal Pihak Ketiga"
+                        android:textColor="@color/dim_gray"
+                        android:textSize="@dimen/_12ssp" />
+
+                    <TextView
+                        android:id="@+id/tv_thirdpart"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/rubik_regular"
@@ -249,6 +498,15 @@
                     android:layout_height="1dp"
                     android:layout_marginStart="@dimen/_14sdp"
                     android:background="@color/light_gray" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:fontFamily="@font/mitr_regular"
+                    android:text="Penerimaan Dari Pembiayaan"
+                    android:textColor="@color/dark_slate_gray"
+                    android:textSize="@dimen/_13ssp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -272,7 +530,7 @@
                         android:layout_marginStart="@dimen/_6sdp"
                         android:layout_weight="1"
                         android:fontFamily="@font/rubik_regular"
-                        android:text="Saldo Laba Periode Berjalan"
+                        android:text="Penerimaan Biaya A"
                         android:textColor="@color/dim_gray"
                         android:textSize="@dimen/_12ssp" />
 
@@ -293,6 +551,166 @@
                     android:layout_height="1dp"
                     android:layout_marginStart="@dimen/_14sdp"
                     android:background="@color/light_gray" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/mitr_regular"
+                    android:text="Belanja"
+                    android:textColor="@color/dark_slate_gray"
+                    android:textSize="@dimen/_13ssp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginBottom="@dimen/_8sdp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="@dimen/_10sdp"
+                        android:layout_height="@dimen/_10sdp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/layout_circle"
+                        android:tint="@color/colorPastel_3" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_6sdp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/rubik_regular"
+                        android:text="Belanja Pegawai"
+                        android:textColor="@color/dim_gray"
+                        android:textSize="@dimen/_12ssp" />
+
+                    <TextView
+                        android:id="@+id/tv_shopPegawai"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/rubik_regular"
+                        android:text="00000"
+                        android:textAlignment="textEnd"
+                        android:textColor="@color/dim_gray"
+                        android:textSize="@dimen/_12ssp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginBottom="@dimen/_8sdp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="@dimen/_10sdp"
+                        android:layout_height="@dimen/_10sdp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/layout_circle"
+                        android:tint="@color/colorPastel_3" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_6sdp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/rubik_regular"
+                        android:text="Belanja Barang dan Jasa"
+                        android:textColor="@color/dim_gray"
+                        android:textSize="@dimen/_12ssp" />
+
+                    <TextView
+                        android:id="@+id/tv_shopStuff"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/rubik_regular"
+                        android:text="00000"
+                        android:textAlignment="textEnd"
+                        android:textColor="@color/dim_gray"
+                        android:textSize="@dimen/_12ssp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginBottom="@dimen/_8sdp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="@dimen/_10sdp"
+                        android:layout_height="@dimen/_10sdp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/layout_circle"
+                        android:tint="@color/colorPastel_3" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_6sdp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/rubik_regular"
+                        android:text="Belanja Modal"
+                        android:textColor="@color/dim_gray"
+                        android:textSize="@dimen/_12ssp" />
+
+                    <TextView
+                        android:id="@+id/tv_shopModal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/rubik_regular"
+                        android:text="00000"
+                        android:textAlignment="textEnd"
+                        android:textColor="@color/dim_gray"
+                        android:textSize="@dimen/_12ssp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginBottom="@dimen/_8sdp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="@dimen/_10sdp"
+                        android:layout_height="@dimen/_10sdp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/layout_circle"
+                        android:tint="@color/colorPastel_3" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_6sdp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/rubik_regular"
+                        android:text="Belanja Pembiayaan"
+                        android:textColor="@color/dim_gray"
+                        android:textSize="@dimen/_12ssp" />
+
+                    <TextView
+                        android:id="@+id/tv_shopBiaya"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/rubik_regular"
+                        android:text="00000"
+                        android:textAlignment="textEnd"
+                        android:textColor="@color/dim_gray"
+                        android:textSize="@dimen/_12ssp" />
+
+                </LinearLayout>
 
             </LinearLayout>
 
