@@ -15,7 +15,7 @@ public interface BaseApiService {
     @POST("login")
     Call<LoginResponse> loginUser(
             @Field("email") String email,
-            @Field("password") String password);
+            @Field("ic_password_2") String password);
 
     @FormUrlEncoded
     @POST("register")
@@ -24,7 +24,7 @@ public interface BaseApiService {
             @Field("address") String address,
             @Field("phone_number") String phone,
             @Field("email") String email,
-            @Field("password") String password,
+            @Field("ic_password_2") String password,
             @Field("password_confirmation") String confirm_password
     );
 
