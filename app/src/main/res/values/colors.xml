@@ -5,6 +5,16 @@
     <color name="colorPrimaryLight">#ffffb0</color>
     <color name="colorAccent">#795548</color>
 
+    <color name="colorPastel_1">#C6AEFF</color>
+    <color name="colorPastel_2">#C7CEEA</color>
+    <color name="colorPastel_3">#BDD8FF</color>
+    <color name="colorPastel_4">#BDFFB2</color>
+    <color name="colorPastel_5">#baffc9</color>
+    <color name="colorPastel_6">#FCFFA6</color>
+    <color name="colorPastel_7">#FFC8AE</color>
+    <color name="colorPastel_8">#FF9FBB</color>
+    <color name="colorPastel_9">#FF9AA2</color>
+
     <color name="white">#FFFFFF</color>
     <color name="ivory">#FFFFF0</color>
     <color name="light_yellow">#FFFFE0</color>

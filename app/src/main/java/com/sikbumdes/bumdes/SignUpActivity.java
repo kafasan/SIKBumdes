@@ -12,6 +12,7 @@ import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,7 +30,7 @@ public class SignUpActivity extends AppCompatActivity {
 
     TextInputLayout tilCompany, tilAddress, tilPhone, tilEmail, tilPassword, tilConfPassword;
     TextInputEditText etCompany, etAddress, etPhone, etEmail, etPassword, etConfPassword;
-    TextView login;
+    ImageView login;
     Button register;
     ProgressDialog loading;
 
@@ -52,12 +53,11 @@ public class SignUpActivity extends AppCompatActivity {
         etPassword = findViewById(R.id.et_password);
         etConfPassword = findViewById(R.id.et_password_confirm);
 
-        login = findViewById(R.id.tv_login);
+        login = findViewById(R.id.iv_back);
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
-                startActivity(intent);
+                startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
             }
         });
 
