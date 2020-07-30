@@ -68,6 +68,7 @@
                     android:layout_marginTop="@dimen/_20sdp"
                     android:hint="Email"
                     android:textColorHint="@color/dark_slate_gray"
+                    app:boxBackgroundColor="@android:color/transparent"
                     app:errorEnabled="true"
                     app:hintTextColor="@color/colorPrimary">
 
@@ -88,6 +89,7 @@
                     android:layout_marginTop="@dimen/_5sdp"
                     android:hint="Kata Sandi"
                     android:textColorHint="@color/dark_slate_gray"
+                    app:boxBackgroundColor="@android:color/transparent"
                     app:errorEnabled="true"
                     app:hintTextColor="@color/colorPrimary">
 

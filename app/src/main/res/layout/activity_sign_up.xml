@@ -88,6 +88,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColorHint="@color/gray"
+                        app:boxBackgroundColor="@android:color/transparent"
                         app:errorEnabled="true"
                         app:hintTextColor="@color/colorPrimary">
 
@@ -119,6 +120,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColorHint="@color/gray"
+                        app:boxBackgroundColor="@android:color/transparent"
                         app:errorEnabled="true"
                         app:hintTextColor="@color/colorPrimary">
 
@@ -150,6 +152,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColorHint="@color/gray"
+                        app:boxBackgroundColor="@android:color/transparent"
                         app:errorEnabled="true"
                         app:hintTextColor="@color/colorPrimary">
 
@@ -182,6 +185,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColorHint="@color/gray"
+                        app:boxBackgroundColor="@android:color/transparent"
                         app:errorEnabled="true"
                         app:hintTextColor="@color/colorPrimary">
 
@@ -214,6 +218,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColorHint="@color/gray"
+                        app:boxBackgroundColor="@android:color/transparent"
                         app:errorEnabled="true"
                         app:hintTextColor="@color/colorPrimary">
 
@@ -247,6 +252,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColorHint="@color/gray"
+                        app:boxBackgroundColor="@android:color/transparent"
                         app:errorEnabled="true"
                         app:hintTextColor="@color/colorPrimary">
 
