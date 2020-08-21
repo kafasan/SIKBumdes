@@ -76,7 +76,7 @@
                         android:id="@+id/et_email"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/maven_pro_medium"
+                        android:fontFamily="@font/rubik_regular"
                         android:inputType="textEmailAddress"
                         android:textSize="@dimen/_12ssp" />
 
@@ -91,13 +91,14 @@
                     android:textColorHint="@color/dark_slate_gray"
                     app:boxBackgroundColor="@android:color/transparent"
                     app:errorEnabled="true"
-                    app:hintTextColor="@color/colorPrimary">
+                    app:hintTextColor="@color/colorPrimary"
+                    app:passwordToggleEnabled="true">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/et_password"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/maven_pro_medium"
+                        android:fontFamily="@font/rubik_regular"
                         android:inputType="textPassword"
                         android:textSize="@dimen/_12ssp" />
 

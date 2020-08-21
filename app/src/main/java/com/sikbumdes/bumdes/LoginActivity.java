@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,12 +36,13 @@ public class LoginActivity extends AppCompatActivity {
     TextView forgetPass, registration;
     MaterialButton login;
     ProgressDialog loading;
-    Context mContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE|WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
 
         tilEmail = findViewById(R.id.til_Email);
         tilPassword = findViewById(R.id.til_Password);
@@ -69,9 +71,7 @@ public class LoginActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //loginUser();
-                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                startActivity(intent);
+                loginUser();
             }
         });
 
@@ -129,7 +129,7 @@ public class LoginActivity extends AppCompatActivity {
         call.enqueue(new Callback<LoginResponse>() {
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
-                LoginResponse loginResponse =response.body();
+                LoginResponse loginResponse = response.body();
                 if (response.isSuccessful()){
                     if (loginResponse.isSuccess()){
                         Log.i("LOGIN CHECK", "onResponse : SUCCESSFUL");
@@ -142,13 +142,13 @@ public class LoginActivity extends AppCompatActivity {
                     }else {
                         Log.i("LOGIN CHECK", "onResponse  : FAILED");
                         loading.dismiss();
-                        Toast.makeText(LoginActivity.this, "Email atau Password salah, mohon coba lagi.", Toast.LENGTH_LONG).show();
+                        Toast.makeText(LoginActivity.this, "Email atau Password salah", Toast.LENGTH_LONG).show();
                     }
-                }else {
+                } else {
                     loading.dismiss();
                     try {
                         JSONObject jObjError = new JSONObject(response.errorBody().string());
-                        Toast.makeText(LoginActivity.this, jObjError.getString("message"), Toast.LENGTH_LONG).show();
+                        Toast.makeText(LoginActivity.this, jObjError.getString("error"), Toast.LENGTH_LONG).show();
                     } catch (Exception e) {
                         Toast.makeText(LoginActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
                     }

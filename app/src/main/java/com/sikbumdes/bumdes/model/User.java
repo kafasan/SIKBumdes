@@ -18,6 +18,7 @@ public class User {
     private String email;
 
     @SerializedName("token")
+    @Expose
     private String token;
 
     public User(String id, String company, String email, String token) {

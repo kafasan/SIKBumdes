@@ -28,9 +28,9 @@ public class SharedPrefManager {
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
         editor.putString("id", user.getId());
-        editor.putString("token", user.getToken());
         editor.putString("company", user.getCompany());
         editor.putString("email", user.getEmail());
+        editor.putString("token", user.getToken());
 
         editor.apply();
     }
@@ -44,9 +44,9 @@ public class SharedPrefManager {
         SharedPreferences sharedPreferences = mContext.getSharedPreferences(SIK_BUMDES, Context.MODE_PRIVATE);
         return new User(
                 sharedPreferences.getString("id", null),
-                sharedPreferences.getString("token", null),
                 sharedPreferences.getString("company", null),
-                sharedPreferences.getString("email", null)
+                sharedPreferences.getString("email", null),
+                sharedPreferences.getString("token", null)
         );
     }
 
