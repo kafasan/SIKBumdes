@@ -42,8 +42,8 @@
                         android:gravity="center"
                         android:layout_marginLeft="@dimen/_10sdp"
                         android:layout_marginRight="@dimen/_10sdp"
-                        android:text="Tingkatkan akun Anda ke Pro sekarang juga!"
-                        android:textColor="@color/dim_gray"
+                        android:text="Tingkatkan Akun Kamu ke Premium Sekarang Juga!"
+                        android:textColor="@color/colorAccent"
                         android:textSize="@dimen/_15ssp" />
 
                 </RelativeLayout>
@@ -72,12 +72,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/_10sdp"
-                    android:fontFamily="@font/mitr_regular"
-                    android:text="Yang akan Anda dapatkan dengan akun Pro"
+                    android:fontFamily="@font/maven_pro_medium"
+                    android:text="Yang akan Kamu Dapatkan dengan Akun Premium"
                     android:textAlignment="center"
                     android:textAllCaps="false"
                     android:textColor="@color/dark_slate_gray"
-                    android:textSize="@dimen/_15ssp" />
+                    android:textSize="@dimen/_14ssp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -178,7 +178,7 @@
                     android:paddingStart="@dimen/_40sdp"
                     android:paddingEnd="@dimen/_40sdp"
                     android:text="$49.00"
-                    android:textColor="@color/white"
+                    android:textColor="@color/colorAccent"
                     android:textSize="@dimen/_15ssp"
                     app:cornerRadius="@dimen/_8sdp" />
 

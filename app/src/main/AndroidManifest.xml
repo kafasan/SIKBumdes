@@ -20,7 +20,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ChangePasswordActivity" />
-        <activity android:name=".UserActivity" />
+        <activity android:name=".SettingProfileActivity" />
         <activity android:name=".ForgetPasswordActivity" />
         <activity android:name=".SignUpActivity" />
         <activity android:name=".LoginActivity" />

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
     android:orientation="vertical"
-    tools:context=".UserActivity">
+    tools:context=".SettingProfileActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -34,11 +34,10 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:fontFamily="@font/mitr_regular"
-                android:text="Pengaturan Unit Usaha"
+                android:text="Pengaturan Profil"
                 android:textColor="@color/colorAccent"
-                android:textSize="@dimen/_16ssp" />
+                android:textSize="@dimen/_17ssp" />
         </RelativeLayout>
-
 
     </RelativeLayout>
 
@@ -63,13 +62,12 @@
         <ImageView
             android:layout_width="@dimen/_20sdp"
             android:layout_height="@dimen/_20sdp"
-            android:padding="@dimen/_5sdp"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:src="@drawable/ic_edit"
             android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_10sdp"
             android:background="@drawable/button_primary"
-            />
-
+            android:padding="@dimen/_5sdp"
+            android:src="@drawable/ic_edit_2"
+            android:tint="@color/colorAccent" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -96,6 +94,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColorHint="@color/gray"
+                    app:boxBackgroundColor="@android:color/transparent"
                     app:errorEnabled="true"
                     app:hintTextColor="@color/colorPrimary">
 
@@ -103,8 +102,9 @@
                         android:id="@+id/et_company"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/maven_pro_medium"
+                        android:fontFamily="@font/rubik_regular"
                         android:hint="Nama Perusahaan"
+                        android:inputType="textCapWords"
                         android:textSize="@dimen/_12ssp" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -127,6 +127,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColorHint="@color/gray"
+                    app:boxBackgroundColor="@android:color/transparent"
                     app:errorEnabled="true"
                     app:hintTextColor="@color/colorPrimary">
 
@@ -134,8 +135,9 @@
                         android:id="@+id/et_address"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/maven_pro_medium"
+                        android:fontFamily="@font/rubik_regular"
                         android:hint="Alamat Perusahaan"
+                        android:inputType="textCapWords"
                         android:textSize="@dimen/_12ssp" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -158,6 +160,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColorHint="@color/gray"
+                    app:boxBackgroundColor="@android:color/transparent"
                     app:errorEnabled="true"
                     app:hintTextColor="@color/colorPrimary">
 
@@ -165,9 +168,9 @@
                         android:id="@+id/et_phone"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/maven_pro_medium"
+                        android:fontFamily="@font/rubik_regular"
                         android:hint="Nomor Telepon"
-                        android:inputType="number"
+                        android:inputType="phone"
                         android:textSize="@dimen/_12ssp" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -190,6 +193,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColorHint="@color/gray"
+                    app:boxBackgroundColor="@android:color/transparent"
                     app:errorEnabled="true"
                     app:hintTextColor="@color/colorPrimary">
 
@@ -197,7 +201,7 @@
                         android:id="@+id/et_email"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/maven_pro_medium"
+                        android:fontFamily="@font/rubik_regular"
                         android:hint="Email"
                         android:inputType="textEmailAddress"
                         android:textSize="@dimen/_12ssp" />
@@ -213,13 +217,13 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="@dimen/_25sdp"
                 android:layout_marginBottom="@dimen/_20sdp"
-                android:background="@drawable/button_primary"
                 android:fontFamily="@font/maven_pro_bold"
                 android:paddingStart="@dimen/_40sdp"
                 android:paddingEnd="@dimen/_40sdp"
                 android:text="Simpan"
-                android:textColor="@color/white"
+                android:textColor="@color/colorAccent"
                 android:textSize="@dimen/_15ssp"
+                app:backgroundTint="@color/colorPrimary"
                 app:cornerRadius="@dimen/_8sdp" />
 
         </LinearLayout>

@@ -77,15 +77,6 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    public void onStart() {
-        super.onStart();
-        if (SharedPrefManager.getInstance(this).isLoggedIn()) {
-            Intent intent = new Intent(this, MainActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(intent);
-        }
-    }
-
     public void loginUser(){
 
         loading = ProgressDialog.show(LoginActivity.this, null, "Mohon tunggu sebentar...", true, false);
@@ -159,7 +150,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onFailure(Call<LoginResponse> call, Throwable t) {
                 Log.e("LOGIN CHECK", "onFailure: ERROR > " + t.toString());
                 loading.dismiss();
-                Toast.makeText(LoginActivity.this, "Kesalahan terjadi. Silakan coba lagi.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginActivity.this, "Terjadi kesalahan. Silahkan coba lagi nanti.", Toast.LENGTH_SHORT).show();
             }
         });
     }

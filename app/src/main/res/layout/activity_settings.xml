@@ -372,9 +372,9 @@
                     android:layout_marginTop="@dimen/_15sdp"
                     android:layout_marginRight="@dimen/_15sdp"
                     android:layout_marginBottom="@dimen/_40sdp"
-                    android:background="@color/colorPrimary"
+                    app:backgroundTint="@color/colorPrimary"
                     android:fontFamily="@font/maven_pro_bold"
-                    android:text="Upgrade to pro"
+                    android:text="Tingkatkan ke versi premium"
                     android:textColor="@color/colorAccent"
                     app:cornerRadius="@dimen/_6sdp" />
             </LinearLayout>

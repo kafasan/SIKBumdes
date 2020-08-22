@@ -7,7 +7,7 @@ public class User {
 
     @SerializedName("id")
     @Expose
-    private String id;
+    private int id;
 
     @SerializedName("company")
     @Expose
@@ -21,18 +21,18 @@ public class User {
     @Expose
     private String token;
 
-    public User(String id, String company, String email, String token) {
+    public User(int id, String company, String email, String token) {
         this.id = id;
         this.company = company;
         this.email = email;
         this.token = token;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

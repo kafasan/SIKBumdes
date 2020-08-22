@@ -98,6 +98,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/maven_pro_medium"
                             android:hint="Nama Perusahaan"
+                            android:inputType="textCapWords"
                             android:textSize="@dimen/_12ssp" />
 
                     </com.google.android.material.textfield.TextInputLayout>
@@ -130,6 +131,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/maven_pro_medium"
                             android:hint="Alamat Perusahaan"
+                            android:inputType="textCapWords"
                             android:textSize="@dimen/_12ssp" />
 
                     </com.google.android.material.textfield.TextInputLayout>
@@ -162,7 +164,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/maven_pro_medium"
                             android:hint="Nomor Telepon"
-                            android:inputType="number"
+                            android:inputType="phone"
                             android:textSize="@dimen/_12ssp" />
 
                     </com.google.android.material.textfield.TextInputLayout>
@@ -280,7 +282,7 @@
                     android:paddingStart="@dimen/_40sdp"
                     android:paddingEnd="@dimen/_40sdp"
                     android:text="Daftar"
-                    android:textColor="@color/white"
+                    android:textColor="@color/colorAccent"
                     android:textSize="@dimen/_15ssp"
                     app:cornerRadius="@dimen/_8sdp" />
 
@@ -289,6 +291,5 @@
         </androidx.cardview.widget.CardView>
 
     </RelativeLayout>
-
 
 </androidx.core.widget.NestedScrollView>

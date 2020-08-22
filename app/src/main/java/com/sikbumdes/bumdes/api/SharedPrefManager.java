@@ -27,7 +27,7 @@ public class SharedPrefManager {
         SharedPreferences sharedPreferences = mContext.getSharedPreferences(SIK_BUMDES, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
-        editor.putString("id", user.getId());
+        editor.putInt("id", user.getId());
         editor.putString("company", user.getCompany());
         editor.putString("email", user.getEmail());
         editor.putString("token", user.getToken());
@@ -37,13 +37,13 @@ public class SharedPrefManager {
 
     public boolean isLoggedIn(){
         SharedPreferences sharedPreferences = mContext.getSharedPreferences(SIK_BUMDES, Context.MODE_PRIVATE);
-        return sharedPreferences.getString("id", null) != null;
+        return sharedPreferences.getInt("id", 0) != 0;
     }
 
     public User getUser(){
         SharedPreferences sharedPreferences = mContext.getSharedPreferences(SIK_BUMDES, Context.MODE_PRIVATE);
         return new User(
-                sharedPreferences.getString("id", null),
+                sharedPreferences.getInt("id", 0),
                 sharedPreferences.getString("company", null),
                 sharedPreferences.getString("email", null),
                 sharedPreferences.getString("token", null)
