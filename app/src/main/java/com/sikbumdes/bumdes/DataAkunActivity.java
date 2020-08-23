@@ -146,6 +146,7 @@ public class DataAkunActivity extends AppCompatActivity {
                         rv_akun_parent.setLayoutManager(eLayoutManager);
                         rv_akun_parent.setItemAnimator(new DefaultItemAnimator());
                         rv_akun_parent.setAdapter(akun_parentAdapter);
+                        akun_parentAdapter.notifyDataSetChanged();
                     } else {
                         Toast.makeText(context, "Terjadi kesalahan", Toast.LENGTH_SHORT).show();
                     }

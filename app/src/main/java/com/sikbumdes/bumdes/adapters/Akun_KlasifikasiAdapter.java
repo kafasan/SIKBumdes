@@ -103,7 +103,7 @@ public class Akun_KlasifikasiAdapter extends RecyclerView.Adapter<Akun_Klasifika
             ll_akun_class = itemView.findViewById(R.id.ll_akun_class);
             rv_akun_akun = itemView.findViewById(R.id.rv_akun_akun);
             ll_akun_class.setOnClickListener(this);
-//            iv_edit.setOnClickListener(this);
+            iv_edit.setOnClickListener(this);
 
 //            if (eLayoutManager.getItemCount() == 0) {
 //                ll_akun_class.setOnClickListener(null);
@@ -145,7 +145,7 @@ public class Akun_KlasifikasiAdapter extends RecyclerView.Adapter<Akun_Klasifika
                             return false;
                         }
                     });
-                    popupMenu.inflate(R.menu.data_akun_menu);
+                    popupMenu.inflate(R.menu.akun_edit_menu);
                     popupMenu.show();
                     break;
                 default:
@@ -172,6 +172,7 @@ public class Akun_KlasifikasiAdapter extends RecyclerView.Adapter<Akun_Klasifika
                             rv_akun_akun.setLayoutManager(eLayoutManager);
                             rv_akun_akun.setItemAnimator(new DefaultItemAnimator());
                             rv_akun_akun.setAdapter(akun_akunAdapter);
+                            akun_akunAdapter.notifyDataSetChanged();
                         } else {
                             Toast.makeText(context, "Terjadi kesalahan", Toast.LENGTH_SHORT).show();
                         }
@@ -283,6 +284,7 @@ public class Akun_KlasifikasiAdapter extends RecyclerView.Adapter<Akun_Klasifika
                         if (akunClassUpdateResponse.isSuccess()){
                             tv_class.setText(akunClassUpdateResponse.getAkunClass().getClassification_name() +
                                     " (" + akunClassUpdateResponse.getAkunClass().getClassification_code() + ")");
+                            classDialog.dismiss();
                         }
                     }
                 }

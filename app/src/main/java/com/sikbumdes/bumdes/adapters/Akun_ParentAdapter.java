@@ -72,6 +72,7 @@ public class Akun_ParentAdapter extends RecyclerView.Adapter<Akun_ParentAdapter.
                         holder.rv_akun_class.setLayoutManager(eLayoutManager);
                         holder.rv_akun_class.setItemAnimator(new DefaultItemAnimator());
                         holder.rv_akun_class.setAdapter(holder.akun_klasifikasiAdapter);
+                        holder.akun_klasifikasiAdapter.notifyDataSetChanged();
                         if (eLayoutManager.getItemCount() == 0) {
                             holder.ll_empty.setVisibility(View.VISIBLE);
                             holder.rv_akun_class.setVisibility(View.GONE);
