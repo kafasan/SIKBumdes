@@ -126,7 +126,7 @@
                     android:paddingStart="@dimen/_40sdp"
                     android:paddingEnd="@dimen/_40sdp"
                     android:text="Masuk"
-                    android:textColor="@color/white"
+                    android:textColor="@color/colorAccent"
                     android:textSize="@dimen/_15ssp"
                     app:cornerRadius="@dimen/_8sdp" />
 

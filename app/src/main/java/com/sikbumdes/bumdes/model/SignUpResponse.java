@@ -7,7 +7,7 @@ public class SignUpResponse {
 
     @SerializedName("success")
     @Expose
-    private boolean success = true;
+    private boolean success;
 
     public SignUpResponse(boolean success) {
         this.success = success;

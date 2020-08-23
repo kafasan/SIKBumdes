@@ -7,6 +7,7 @@ import com.sikbumdes.bumdes.model.AkunClassResponse;
 import com.sikbumdes.bumdes.model.AkunParentResponse;
 import com.sikbumdes.bumdes.model.LoginResponse;
 import com.sikbumdes.bumdes.model.SignUpResponse;
+import com.sikbumdes.bumdes.model.UserDetailResponse;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -34,6 +35,11 @@ public interface BaseApiService {
             @Field("email") String email,
             @Field("password") String password,
             @Field("password_confirmation") String confirm_password
+    );
+
+    @GET("user")
+    Call<UserDetailResponse> getUserDetail(
+            @Header("Authorization") String token
     );
 
     //==== AKUN ====
