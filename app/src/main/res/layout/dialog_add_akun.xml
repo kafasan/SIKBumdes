@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/dialogAkun"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/_10sdp"
+    android:orientation="vertical"
+    app:cardCornerRadius="15dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/_10sdp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/linear1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.4"
+                android:text="Klasifikasi Akun"
+                android:paddingStart="@dimen/_2sdp"
+                android:textSize="@dimen/_14ssp"
+                android:fontFamily="@font/rubik_regular"/>
+
+            <Spinner
+                android:id="@+id/classAcc_spinner"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.6"
+                android:textAlignment="textEnd"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/id_klasifikasi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+
+        <EditText
+            android:id="@+id/kode_akun"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:hint="Kode Akun"
+            android:textSize="@dimen/_14ssp"
+            android:fontFamily="@font/rubik_regular"/>
+
+        <EditText
+            android:id="@+id/nama_akun"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nama Akun"
+            android:textSize="@dimen/_14ssp"
+            android:fontFamily="@font/rubik_regular"
+            android:layout_marginBottom="@dimen/_10sdp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.4"
+                android:text="Posisi Normal"
+                android:paddingStart="@dimen/_2sdp"
+                android:textSize="@dimen/_14ssp"
+                android:fontFamily="@font/rubik_regular"/>
+
+            <Spinner
+                android:id="@+id/positionSpinner"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.6"
+                android:textAlignment="textEnd"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_cancel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_30sdp"
+                android:layout_weight="0.5"
+                android:background="@color/dark_slate_gray"
+                android:fontFamily="@font/maven_pro_bold"
+                android:text="Batal"
+                app:cornerRadius="@dimen/_6sdp" />
+
+            <View
+                android:layout_width="@dimen/_10sdp"
+                android:layout_height="@dimen/_10sdp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_save"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/_30sdp"
+                android:layout_weight="0.5"
+                android:background="@color/colorPrimary"
+                android:fontFamily="@font/maven_pro_bold"
+                android:text="Simpan"
+                app:cornerRadius="@dimen/_6sdp" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Pastikan data yang ada masukkan sudah benar sebelum menyimpan data"
+            android:gravity="center"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_3sdp"
+            android:fontFamily="@font/rubik_regular"/>
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

@@ -24,16 +24,12 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
         setContentView(R.layout.activity_settings);
 
         cv_profile = findViewById(R.id.ll_profile);
-        cv_mngEmployee = findViewById(R.id.ll_employee);
-        cv_mngBusiness = findViewById(R.id.ll_business);
         cv_changePass = findViewById(R.id.ll_changepass);
         cv_logout = findViewById(R.id.ll_logout);
 
         btn_upgrade = findViewById(R.id.btn_buyPro);
 
         cv_profile.setOnClickListener(this);
-        cv_mngEmployee.setOnClickListener(this);
-        cv_mngBusiness.setOnClickListener(this);
         cv_changePass.setOnClickListener(this);
         cv_logout.setOnClickListener(this);
 
@@ -53,12 +49,6 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.ll_profile:
-                startActivity(new Intent(SettingsActivity.this, UserActivity.class));
-                break;
-            case R.id.ll_employee:
-                startActivity(new Intent(SettingsActivity.this, UserActivity.class));
-                break;
-            case R.id.ll_business:
                 startActivity(new Intent(SettingsActivity.this, UserActivity.class));
                 break;
             case R.id.ll_changepass:

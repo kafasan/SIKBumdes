@@ -54,5 +54,15 @@ public interface BaseApiService {
             @Path("id") int id_class
     );
 
+    @FormUrlEncoded
+    @POST("classification")
+    Call<AkunClassResponse> storeClass(
+            @Header("Authorization") String token,
+            @Field("id_parent") String id_parent,
+            @Field("name") String name,
+            @Field("code") String code
+
+    );
+
     //==== NERACA ====
 }

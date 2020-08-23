@@ -61,4 +61,9 @@ public class AkunParent {
     public void setParent_name(String parent_name) {
         this.parent_name = parent_name;
     }
+
+    @Override
+    public String toString() {
+        return parent_name;
+    }
 }

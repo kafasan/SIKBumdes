@@ -2,13 +2,16 @@ package com.sikbumdes.bumdes.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.sikbumdes.bumdes.DataAkunActivity;
 import com.sikbumdes.bumdes.R;
 import com.sikbumdes.bumdes.model.AkunAkun;
 
@@ -66,6 +69,7 @@ public class Akun_AkunAdapter extends RecyclerView.Adapter<Akun_AkunAdapter.Cust
 
         private TextView tv_akun;
         private ImageView iv_edit, iv_circle;
+        private Context context;
 
         public CustomViewHolder(View itemView) {
             super(itemView);
@@ -78,7 +82,23 @@ public class Akun_AkunAdapter extends RecyclerView.Adapter<Akun_AkunAdapter.Cust
 
         @Override
         public void onClick(View view) {
-            //edit
+            PopupMenu popupMenu = new PopupMenu(context, iv_edit);
+            popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                @Override
+                public boolean onMenuItemClick(MenuItem item) {
+                    switch (item.getItemId()){
+                        case R.id.menu_edit:
+//                            editAkun();
+                            return true;
+                        case  R.id.menu_delete:
+//                            deleteAkun();
+                            return true;
+                    }
+                    return false;
+                }
+            });
+            popupMenu.inflate(R.menu.akun_edit_menu);
+            popupMenu.show();
         }
     }
 }
