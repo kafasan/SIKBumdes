@@ -1,6 +1,7 @@
 package com.sikbumdes.bumdes.api;
 
 import com.sikbumdes.bumdes.model.AkunAkunResponse;
+import com.sikbumdes.bumdes.model.AkunAkunUpdateResponse;
 import com.sikbumdes.bumdes.model.AkunClassUpdateResponse;
 import com.sikbumdes.bumdes.model.AkunClassResponse;
 import com.sikbumdes.bumdes.model.AkunClassUpdateResponse;
@@ -50,6 +51,12 @@ public interface BaseApiService {
             @Header("Authorization") String token
     );
 
+    @GET("classification")
+    Call<AkunClassResponse> getAkunClassAll(
+            @Header("Authorization") String token
+    );
+
+
     @GET("classification/{id}")
     Call<AkunClassResponse> getAkunClass(
             @Header("Authorization") String token,
@@ -64,7 +71,7 @@ public interface BaseApiService {
 
     @FormUrlEncoded
     @POST("classification")
-    Call<AkunClassResponse> storeClass(
+    Call<AkunClassUpdateResponse> storeClass(
             @Header("Authorization") String token,
             @Field("id_parent") String id_parent,
             @Field("name") String name,
@@ -88,7 +95,33 @@ public interface BaseApiService {
             @Path("id") int id
     );
 
+    @FormUrlEncoded
+    @POST("account")
+    Call<AkunAkunUpdateResponse> storeAkun(
+            @Header("Authorization") String token,
+            @Field("id_classification") String id_classification,
+            @Field("name") String name,
+            @Field("code") String code,
+            @Field("position") String position
 
+    );
+
+    @FormUrlEncoded
+    @POST("account/{id}")
+    Call<AkunAkunUpdateResponse> updateAkun(
+            @Header("Authorization") String token,
+            @Path("id") int id,
+            @Field("id_classification") int id_classification,
+            @Field("name") String name,
+            @Field("code") String code,
+            @Field("position") String position
+    );
+
+    @DELETE("account/{id}")
+    Call<AkunDeleteResponse> deleteAccount(
+            @Header("Authorization") String token,
+            @Path("id") int id
+    );
 
 
     //==== NERACA ====

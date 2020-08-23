@@ -72,4 +72,9 @@ public class AkunClass {
     public void setChildrenVisible(boolean childrenVisible) {
         this.childrenVisible = childrenVisible;
     }
+
+    @Override
+    public String toString() {
+        return classification_name;
+    }
 }

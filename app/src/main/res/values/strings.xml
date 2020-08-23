@@ -1,3 +1,6 @@
 <resources>
-    <string name="app_name">SIK Bumdes</string>
+    <string-array name="posisi_normal">
+        <item>Debit</item>
+        <item>Kredit</item>
+    </string-array>
 </resources>

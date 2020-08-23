@@ -32,8 +32,11 @@ import com.sikbumdes.bumdes.adapters.Akun_ParentAdapter;
 import com.sikbumdes.bumdes.api.RetrofitClient;
 import com.sikbumdes.bumdes.api.SharedPrefManager;
 import com.sikbumdes.bumdes.model.AkunAkun;
+import com.sikbumdes.bumdes.model.AkunAkunResponse;
+import com.sikbumdes.bumdes.model.AkunAkunUpdateResponse;
 import com.sikbumdes.bumdes.model.AkunClass;
 import com.sikbumdes.bumdes.model.AkunClassResponse;
+import com.sikbumdes.bumdes.model.AkunClassUpdateResponse;
 import com.sikbumdes.bumdes.model.AkunParent;
 import com.sikbumdes.bumdes.model.AkunParentResponse;
 import com.sikbumdes.bumdes.model.User;
@@ -49,19 +52,23 @@ import retrofit2.Response;
 public class DataAkunActivity extends AppCompatActivity {
 
     private ArrayList<AkunParent> akunParentArrayList;
+    private ArrayList<AkunClass> akunClassArrayList;
     private RecyclerView rv_akun_parent;
     private Akun_ParentAdapter akun_parentAdapter;
     private SwipeRefreshLayout refreshLayout;
     private Dialog classDialog, akunDialog;
     private ArrayAdapter<AkunParent> arrayAdapter;
+    private ArrayAdapter<AkunClass> classArrayAdapter;
     ProgressDialog loading;
     Context context;
 
     TextView id_parentAkun;
     EditText nama_klasifikasi, kode_klasifikasi;
 
-    TextView id_klasifikasi;
+    TextView id_klasifikasi, id_position;
     EditText nama_akun, kode_akun;
+
+    private String[] posisi = {"Debit", "Kredit"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,10 +96,10 @@ public class DataAkunActivity extends AppCompatActivity {
                     public boolean onMenuItemClick(MenuItem item) {
                         switch (item.getItemId()){
                             case R.id.add_classification:
-                                addClassification();
+                                showDialogAddClassification();
                                 return true;
                             case  R.id.add_akun:
-                                //dialog akun
+                                showDialogAddAkun();
                                 return true;
                         }
                         return false;
@@ -172,7 +179,7 @@ public class DataAkunActivity extends AppCompatActivity {
         });
     }
 
-    public void addClassification(){
+    public void showDialogAddClassification(){
         classDialog = new Dialog(DataAkunActivity.this);
         classDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         classDialog.setCancelable(false);
@@ -253,15 +260,15 @@ public class DataAkunActivity extends AppCompatActivity {
         String name = nama_klasifikasi.getText().toString();
         String code = kode_klasifikasi.getText().toString();
 
-        Call<AkunClassResponse> call = RetrofitClient
+        Call<AkunClassUpdateResponse> call = RetrofitClient
                 .getInstance()
                 .getApi()
                 .storeClass(token, id_parent, name, code);
 
-        call.enqueue(new Callback<AkunClassResponse>() {
+        call.enqueue(new Callback<AkunClassUpdateResponse>() {
             @Override
-            public void onResponse(Call<AkunClassResponse> call, Response<AkunClassResponse> response) {
-                AkunClassResponse classResponse = response.body();
+            public void onResponse(Call<AkunClassUpdateResponse> call, Response<AkunClassUpdateResponse> response) {
+                AkunClassUpdateResponse classResponse = response.body();
                 if (response.isSuccessful()){
                     if (classResponse.isSuccess()){
                         Log.i("CLASSIFICATION", "store classification is SUCCESSFUL");
@@ -275,8 +282,127 @@ public class DataAkunActivity extends AppCompatActivity {
             }
 
             @Override
+            public void onFailure(Call<AkunClassUpdateResponse> call, Throwable t) {
+                Log.d("CLASSIFICATION", t.toString());
+                Toast.makeText(context, "Kesalahan terjadi, coba beberapa saat lagi.", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    public void showDialogAddAkun(){
+        akunDialog = new Dialog(DataAkunActivity.this);
+        akunDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        akunDialog.setCancelable(false);
+        akunDialog.setContentView(R.layout.dialog_add_akun);
+        akunDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        Spinner classSpinner = akunDialog.findViewById(R.id.classAcc_spinner);
+        kode_akun = akunDialog.findViewById(R.id.kode_akun);
+        nama_akun = akunDialog.findViewById(R.id.nama_akun);
+        Spinner posSpinner = akunDialog.findViewById(R.id.positionSpinner);
+
+        User user = SharedPrefManager.getInstance(this).getUser();
+        String token = "Bearer " + user.getToken();
+
+        Call<AkunClassResponse> call = RetrofitClient
+                .getInstance()
+                .getApi()
+                .getAkunClassAll(token);
+
+        call.enqueue(new Callback<AkunClassResponse>() {
+            @Override
+            public void onResponse(Call<AkunClassResponse> call, Response<AkunClassResponse> response) {
+                AkunClassResponse akunClassResponse = response.body();
+                if (response.isSuccessful()) {
+                    if (akunClassResponse.isSuccess()) {
+                        akunClassArrayList = akunClassResponse.getAkunClasses();
+                        classArrayAdapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, akunClassArrayList);
+                        classArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        classSpinner.setAdapter(classArrayAdapter);
+                    }
+                } else {
+                    Toast.makeText(context, "Gagal mengambil data klasifikasi akun", Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
             public void onFailure(Call<AkunClassResponse> call, Throwable t) {
-                Log.d("CLASSIFICATION CHECK", t.toString());
+                Toast.makeText(context, "Kesalahan terjadi, coba beberapa saat lagi.", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        classSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                AkunClass akunClass = (AkunClass) adapterView.getSelectedItem();
+                id_klasifikasi = akunDialog.findViewById(R.id.id_klasifikasi);
+                id_klasifikasi.setText(String.valueOf(akunClass.getId()));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, posisi);
+        posSpinner.setAdapter(adapter);
+        posSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                id_position = akunDialog.findViewById(R.id.id_position);
+                id_position.setText(String.valueOf(adapter.getItemId(i)));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        MaterialButton cancel = akunDialog.findViewById(R.id.btn_cancel);
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                akunDialog.dismiss();
+            }
+        });
+
+        MaterialButton save = akunDialog.findViewById(R.id.btn_save);
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                createAkun();
+            }
+        });
+        akunDialog.show();
+    }
+
+    public void createAkun(){
+        User user = SharedPrefManager.getInstance(this).getUser();
+        String token = "Bearer " + user.getToken();
+
+        String id_classification = id_klasifikasi.getText().toString();
+        String name = nama_akun.getText().toString();
+        String code = kode_akun.getText().toString();
+        String position = id_position.getText().toString();
+
+        Call<AkunAkunUpdateResponse> call = RetrofitClient
+                .getInstance()
+                .getApi()
+                .storeAkun(token, id_classification, name, code, position);
+
+        call.enqueue(new Callback<AkunAkunUpdateResponse>() {
+            @Override
+            public void onResponse(Call<AkunAkunUpdateResponse> call, Response<AkunAkunUpdateResponse> response) {
+                Log.i("ACCOUNT", "store account is SUCCESSFUL");
+                Toast.makeText(context, "Akun berhasil ditambahkan", Toast.LENGTH_LONG).show();
+                akunDialog.dismiss();
+            }
+
+            @Override
+            public void onFailure(Call<AkunAkunUpdateResponse> call, Throwable t) {
+                Log.d("ACCOUNT", t.toString());
                 Toast.makeText(context, "Kesalahan terjadi, coba beberapa saat lagi.", Toast.LENGTH_SHORT).show();
             }
         });
