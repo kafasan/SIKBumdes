@@ -1,15 +1,17 @@
 package com.sikbumdes.bumdes.api;
 
-import com.sikbumdes.bumdes.model.AkunAkun;
 import com.sikbumdes.bumdes.model.AkunAkunResponse;
-import com.sikbumdes.bumdes.model.AkunClass;
+import com.sikbumdes.bumdes.model.AkunClassUpdateResponse;
 import com.sikbumdes.bumdes.model.AkunClassResponse;
+import com.sikbumdes.bumdes.model.AkunClassUpdateResponse;
+import com.sikbumdes.bumdes.model.AkunDeleteResponse;
 import com.sikbumdes.bumdes.model.AkunParentResponse;
 import com.sikbumdes.bumdes.model.LoginResponse;
 import com.sikbumdes.bumdes.model.SignUpResponse;
 import com.sikbumdes.bumdes.model.UserDetailResponse;
 
 import retrofit2.Call;
+import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -69,6 +71,25 @@ public interface BaseApiService {
             @Field("code") String code
 
     );
+
+    @FormUrlEncoded
+    @POST("classification/{id}")
+    Call<AkunClassUpdateResponse> updateClass(
+            @Header("Authorization") String token,
+            @Path("id") int id,
+            @Field("id_parent") int id_parent,
+            @Field("name") String name,
+            @Field("code") String code
+    );
+
+    @DELETE("classification/{id}")
+    Call<AkunDeleteResponse> deleteClass(
+            @Header("Authorization") String token,
+            @Path("id") int id
+    );
+
+
+
 
     //==== NERACA ====
 }

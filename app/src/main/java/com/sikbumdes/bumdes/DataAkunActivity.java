@@ -263,12 +263,12 @@ public class DataAkunActivity extends AppCompatActivity {
                 AkunClassResponse classResponse = response.body();
                 if (response.isSuccessful()){
                     if (classResponse.isSuccess()){
-                        Log.i("CLASSIFICATION CHECK", "onResponse : SUCCESSFUL");
+                        Log.i("CLASSIFICATION", "store classification is SUCCESSFUL");
                         Toast.makeText(context, "Klasifikasi Akun berhasil ditambahkan", Toast.LENGTH_LONG).show();
                         classDialog.dismiss();
                     }
                 } else {
-                    Log.i("CLASSIFICATION CHECK", classResponse.toString());
+                    Log.i("CLASSIFICATION", classResponse.toString());
                     Toast.makeText(context, "Terjadi kesalahan", Toast.LENGTH_SHORT).show();
                 }
             }
