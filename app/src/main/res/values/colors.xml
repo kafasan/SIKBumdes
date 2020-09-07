@@ -15,6 +15,10 @@
     <color name="colorPastel_8">#FF9FBB</color>
     <color name="colorPastel_9">#FF9AA2</color>
 
+    <color name="background_light_gray">#fafafa</color>
+    <color name="text_green">#00e676</color>
+    <color name="text_red">#ff1744</color>
+
     <color name="white">#FFFFFF</color>
     <color name="ivory">#FFFFF0</color>
     <color name="light_yellow">#FFFFE0</color>

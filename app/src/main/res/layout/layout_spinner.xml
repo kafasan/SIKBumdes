@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    style="?android:attr/listPreferredItemHeight"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:fontFamily="@font/rubik_regular"
+    android:gravity="end"
+    android:paddingEnd="@dimen/_12sdp"
+    android:textColor="@color/dark_slate_gray"
+    android:textSize="@dimen/_13ssp" />

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/background_light_gray"
     android:orientation="vertical"
     tools:context=".NeracaAwalActivity">
 
@@ -52,9 +52,11 @@
                 </RelativeLayout>
 
                 <LinearLayout
+                    android:id="@+id/ll_changeyear"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
+                    android:clickable="true"
                     android:orientation="vertical">
 
                     <TextView
@@ -186,169 +188,180 @@
             android:scrollbarThumbHorizontal="@null"
             android:scrollbarThumbVertical="@null">
 
-            <LinearLayout
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_neracaawal_parent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_12sdp"
                 android:layout_marginEnd="@dimen/_12sdp"
-                android:orientation="vertical"
-                android:paddingBottom="@dimen/_10sdp">
+                android:nestedScrollingEnabled="false"
+                android:paddingBottom="@dimen/_10sdp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_8sdp"
-                    android:fontFamily="@font/mitr_regular"
-                    android:text="Aset"
-                    android:textColor="@color/dark_slate_gray"
-                    android:textSize="@dimen/_13ssp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_4sdp"
-                    android:fontFamily="@font/rubik_regular"
-                    android:text="Aset Lancar"
-                    android:textColor="@color/dim_gray"
-                    android:textSize="@dimen/_12ssp" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_asetlancar"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:nestedScrollingEnabled="false" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_4sdp"
-                    android:fontFamily="@font/rubik_regular"
-                    android:text="Aset Tetap"
-                    android:textColor="@color/dim_gray"
-                    android:textSize="@dimen/_12ssp" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_asettetap"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:nestedScrollingEnabled="false" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_8sdp"
-                    android:fontFamily="@font/mitr_regular"
-                    android:text="Liabilitas/Utang"
-                    android:textColor="@color/dark_slate_gray"
-                    android:textSize="@dimen/_13ssp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_4sdp"
-                    android:fontFamily="@font/rubik_regular"
-                    android:text="Utang Lancar"
-                    android:textColor="@color/dim_gray"
-                    android:textSize="@dimen/_12ssp" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_utanglancar"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:nestedScrollingEnabled="false" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_4sdp"
-                    android:fontFamily="@font/rubik_regular"
-                    android:text="Utang Jangka Panjang"
-                    android:textColor="@color/dim_gray"
-                    android:textSize="@dimen/_12ssp" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_utangpanjang"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:nestedScrollingEnabled="false" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_8sdp"
-                    android:fontFamily="@font/mitr_regular"
-                    android:text="Ekuitas"
-                    android:textColor="@color/dark_slate_gray"
-                    android:textSize="@dimen/_13ssp" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_ekuitas"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:nestedScrollingEnabled="false" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_8sdp"
-                    android:fontFamily="@font/mitr_regular"
-                    android:text="Pendapatan"
-                    android:textColor="@color/dark_slate_gray"
-                    android:textSize="@dimen/_13ssp" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_pendapatan"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:nestedScrollingEnabled="false" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_8sdp"
-                    android:fontFamily="@font/mitr_regular"
-                    android:text="Biaya"
-                    android:textColor="@color/dark_slate_gray"
-                    android:textSize="@dimen/_13ssp" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_biaya"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:nestedScrollingEnabled="false" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_8sdp"
-                    android:fontFamily="@font/mitr_regular"
-                    android:text="Pendapatan Lainnya"
-                    android:textColor="@color/dark_slate_gray"
-                    android:textSize="@dimen/_13ssp" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_pendapatanlain"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:nestedScrollingEnabled="false" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_8sdp"
-                    android:fontFamily="@font/mitr_regular"
-                    android:text="Biaya Lainnya"
-                    android:textColor="@color/dark_slate_gray"
-                    android:textSize="@dimen/_13ssp" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_biayalain"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:nestedScrollingEnabled="false" />
-            </LinearLayout>
         </androidx.core.widget.NestedScrollView>
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_12sdp"
+        android:layout_marginEnd="@dimen/_12sdp"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/_10sdp"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:fontFamily="@font/mitr_regular"
+            android:text="Aset"
+            android:textColor="@color/dark_slate_gray"
+            android:textSize="@dimen/_13ssp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:fontFamily="@font/rubik_regular"
+            android:text="Aset Lancar"
+            android:textColor="@color/dim_gray"
+            android:textSize="@dimen/_12ssp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_asetlancar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:nestedScrollingEnabled="false" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:fontFamily="@font/rubik_regular"
+            android:text="Aset Tetap"
+            android:textColor="@color/dim_gray"
+            android:textSize="@dimen/_12ssp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_asettetap"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:nestedScrollingEnabled="false" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:fontFamily="@font/mitr_regular"
+            android:text="Liabilitas/Utang"
+            android:textColor="@color/dark_slate_gray"
+            android:textSize="@dimen/_13ssp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:fontFamily="@font/rubik_regular"
+            android:text="Utang Lancar"
+            android:textColor="@color/dim_gray"
+            android:textSize="@dimen/_12ssp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_utanglancar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:nestedScrollingEnabled="false" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:fontFamily="@font/rubik_regular"
+            android:text="Utang Jangka Panjang"
+            android:textColor="@color/dim_gray"
+            android:textSize="@dimen/_12ssp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_utangpanjang"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:nestedScrollingEnabled="false" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:fontFamily="@font/mitr_regular"
+            android:text="Ekuitas"
+            android:textColor="@color/dark_slate_gray"
+            android:textSize="@dimen/_13ssp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_ekuitas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:nestedScrollingEnabled="false" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:fontFamily="@font/mitr_regular"
+            android:text="Pendapatan"
+            android:textColor="@color/dark_slate_gray"
+            android:textSize="@dimen/_13ssp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_pendapatan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:nestedScrollingEnabled="false" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:fontFamily="@font/mitr_regular"
+            android:text="Biaya"
+            android:textColor="@color/dark_slate_gray"
+            android:textSize="@dimen/_13ssp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_biaya"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:nestedScrollingEnabled="false" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:fontFamily="@font/mitr_regular"
+            android:text="Pendapatan Lainnya"
+            android:textColor="@color/dark_slate_gray"
+            android:textSize="@dimen/_13ssp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_pendapatanlain"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:nestedScrollingEnabled="false" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:fontFamily="@font/mitr_regular"
+            android:text="Biaya Lainnya"
+            android:textColor="@color/dark_slate_gray"
+            android:textSize="@dimen/_13ssp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_biayalain"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:nestedScrollingEnabled="false" />
     </LinearLayout>
 
 </LinearLayout>

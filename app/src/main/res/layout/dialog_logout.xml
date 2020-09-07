@@ -84,7 +84,7 @@
                     android:fontFamily="@font/maven_pro_bold"
                     android:paddingStart="@dimen/_20sdp"
                     android:paddingEnd="@dimen/_20sdp"
-                    android:text="YAKIN"
+                    android:text="YA"
                     android:textColor="@color/colorAccent"
                     android:textSize="@dimen/_14ssp"
                     app:backgroundTint="@color/colorPrimary"

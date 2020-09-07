@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_6sdp"
+        android:fontFamily="@font/mitr_regular"
+        android:text="Parent"
+        android:textColor="@color/dark_slate_gray"
+        android:textSize="@dimen/_13ssp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_neracaawal_class"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:nestedScrollingEnabled="false"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/tv_no_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_4sdp"
+        android:fontFamily="@font/rubik_regular"
+        android:text="Tidak ada data"
+        android:textColor="@color/gray"
+        android:textSize="@dimen/_12ssp"
+        android:visibility="gone" />
+
+</LinearLayout>

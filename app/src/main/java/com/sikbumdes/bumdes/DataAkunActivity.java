@@ -12,6 +12,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -94,11 +95,11 @@ public class DataAkunActivity extends AppCompatActivity {
                 popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
-                        switch (item.getItemId()){
+                        switch (item.getItemId()) {
                             case R.id.add_classification:
                                 showDialogAddClassification();
                                 return true;
-                            case  R.id.add_akun:
+                            case R.id.add_akun:
                                 showDialogAddAkun();
                                 return true;
                         }
@@ -179,16 +180,23 @@ public class DataAkunActivity extends AppCompatActivity {
         });
     }
 
-    public void showDialogAddClassification(){
+    public void showDialogAddClassification() {
         classDialog = new Dialog(DataAkunActivity.this);
         classDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         classDialog.setCancelable(false);
+        classDialog.setCanceledOnTouchOutside(false);
         classDialog.setContentView(R.layout.dialog_add_klasifikasi);
         classDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
-        Spinner parentSpinner = classDialog.findViewById(R.id.parentAcc_spinner);
-        kode_klasifikasi = classDialog.findViewById(R.id.kode_klasifikasi);
-        nama_klasifikasi = classDialog.findViewById(R.id.nama_klasifikasi);
+        DisplayMetrics metrics = context.getResources().getDisplayMetrics();
+        int width = metrics.widthPixels;
+        int height = metrics.heightPixels;
+
+        classDialog.getWindow().setLayout(width, height);
+
+        Spinner parentSpinner = classDialog.findViewById(R.id.sp_parent);
+        kode_klasifikasi = classDialog.findViewById(R.id.et_kode_klasifikasi);
+        nama_klasifikasi = classDialog.findViewById(R.id.et_nama_klasifikasi);
 
         User user = SharedPrefManager.getInstance(this).getUser();
         String token = "Bearer " + user.getToken();
@@ -205,7 +213,7 @@ public class DataAkunActivity extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     if (akunParentResponse.isSuccess()) {
                         akunParentArrayList = akunParentResponse.getAkunParents();
-                        arrayAdapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, akunParentArrayList);
+                        arrayAdapter = new ArrayAdapter<>(context, R.layout.layout_spinner, akunParentArrayList);
                         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         parentSpinner.setAdapter(arrayAdapter);
                     }
@@ -252,7 +260,7 @@ public class DataAkunActivity extends AppCompatActivity {
         classDialog.show();
     }
 
-    public void createClassification(){
+    public void createClassification() {
         User user = SharedPrefManager.getInstance(this).getUser();
         String token = "Bearer " + user.getToken();
 
@@ -269,8 +277,8 @@ public class DataAkunActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<AkunClassUpdateResponse> call, Response<AkunClassUpdateResponse> response) {
                 AkunClassUpdateResponse classResponse = response.body();
-                if (response.isSuccessful()){
-                    if (classResponse.isSuccess()){
+                if (response.isSuccessful()) {
+                    if (classResponse.isSuccess()) {
                         Log.i("CLASSIFICATION", "store classification is SUCCESSFUL");
                         Toast.makeText(context, "Klasifikasi Akun berhasil ditambahkan", Toast.LENGTH_LONG).show();
                         classDialog.dismiss();
@@ -289,17 +297,24 @@ public class DataAkunActivity extends AppCompatActivity {
         });
     }
 
-    public void showDialogAddAkun(){
+    public void showDialogAddAkun() {
         akunDialog = new Dialog(DataAkunActivity.this);
         akunDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         akunDialog.setCancelable(false);
+        akunDialog.setCanceledOnTouchOutside(false);
         akunDialog.setContentView(R.layout.dialog_add_akun);
         akunDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
-        Spinner classSpinner = akunDialog.findViewById(R.id.classAcc_spinner);
-        kode_akun = akunDialog.findViewById(R.id.kode_akun);
-        nama_akun = akunDialog.findViewById(R.id.nama_akun);
-        Spinner posSpinner = akunDialog.findViewById(R.id.positionSpinner);
+        DisplayMetrics metrics = context.getResources().getDisplayMetrics();
+        int width = metrics.widthPixels;
+        int height = metrics.heightPixels;
+
+        akunDialog.getWindow().setLayout(width, height);
+
+        Spinner classSpinner = akunDialog.findViewById(R.id.sp_class);
+        kode_akun = akunDialog.findViewById(R.id.et_kode_akun);
+        nama_akun = akunDialog.findViewById(R.id.et_nama_akun);
+        Spinner posSpinner = akunDialog.findViewById(R.id.sp_position);
 
         User user = SharedPrefManager.getInstance(this).getUser();
         String token = "Bearer " + user.getToken();
@@ -316,7 +331,7 @@ public class DataAkunActivity extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     if (akunClassResponse.isSuccess()) {
                         akunClassArrayList = akunClassResponse.getAkunClasses();
-                        classArrayAdapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, akunClassArrayList);
+                        classArrayAdapter = new ArrayAdapter<>(context, R.layout.layout_spinner, akunClassArrayList);
                         classArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         classSpinner.setAdapter(classArrayAdapter);
                     }
@@ -345,7 +360,8 @@ public class DataAkunActivity extends AppCompatActivity {
             }
         });
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, posisi);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.layout_spinner, posisi);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         posSpinner.setAdapter(adapter);
         posSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -378,7 +394,7 @@ public class DataAkunActivity extends AppCompatActivity {
         akunDialog.show();
     }
 
-    public void createAkun(){
+    public void createAkun() {
         User user = SharedPrefManager.getInstance(this).getUser();
         String token = "Bearer " + user.getToken();
 

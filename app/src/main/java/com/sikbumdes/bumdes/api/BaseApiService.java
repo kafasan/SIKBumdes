@@ -8,8 +8,10 @@ import com.sikbumdes.bumdes.model.AkunClassUpdateResponse;
 import com.sikbumdes.bumdes.model.AkunDeleteResponse;
 import com.sikbumdes.bumdes.model.AkunParentResponse;
 import com.sikbumdes.bumdes.model.LoginResponse;
+import com.sikbumdes.bumdes.model.NeracaAwalResponse;
 import com.sikbumdes.bumdes.model.SignUpResponse;
 import com.sikbumdes.bumdes.model.UserDetailResponse;
+import com.sikbumdes.bumdes.model.UserUpdateResponse;
 
 import retrofit2.Call;
 import retrofit2.http.DELETE;
@@ -19,6 +21,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface BaseApiService {
 
@@ -43,6 +46,16 @@ public interface BaseApiService {
     @GET("user")
     Call<UserDetailResponse> getUserDetail(
             @Header("Authorization") String token
+    );
+
+    @FormUrlEncoded
+    @POST("user/update")
+    Call<UserUpdateResponse> updateUser(
+            @Header("Authorization") String token,
+            @Field("name") String company,
+            @Field("address") String address,
+            @Field("phone_number") String phone,
+            @Field("email") String email
     );
 
     //==== AKUN ====
@@ -124,5 +137,10 @@ public interface BaseApiService {
     );
 
 
-    //==== NERACA ====
+    //==== NERACA AWAL ====
+    @GET("neraca-awal")
+    Call<NeracaAwalResponse> getNeracaAwal(
+            @Header("Authorization") String token,
+            @Query("year") String year
+    );
 }

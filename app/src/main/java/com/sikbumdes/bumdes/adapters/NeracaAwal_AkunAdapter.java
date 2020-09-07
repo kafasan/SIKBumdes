@@ -22,9 +22,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 import com.google.android.material.button.MaterialButton;
 import com.sikbumdes.bumdes.R;
@@ -35,35 +32,65 @@ import com.sikbumdes.bumdes.model.AkunAkunUpdateResponse;
 import com.sikbumdes.bumdes.model.AkunClass;
 import com.sikbumdes.bumdes.model.AkunClassResponse;
 import com.sikbumdes.bumdes.model.AkunDeleteResponse;
+import com.sikbumdes.bumdes.model.NeracaAwalAkun;
+import com.sikbumdes.bumdes.model.NeracaAwalBalance;
 import com.sikbumdes.bumdes.model.User;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class Akun_AkunAdapter extends RecyclerView.Adapter<Akun_AkunAdapter.CustomViewHolder> {
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+public class NeracaAwal_AkunAdapter extends RecyclerView.Adapter<NeracaAwal_AkunAdapter.CustomViewHolder> {
 
     Context context;
-    private ArrayList<AkunAkun> akunAkuns;
+    private ArrayList<NeracaAwalAkun> neracaAwalAkuns;
     private List<Integer> colors;
 
-    public Akun_AkunAdapter(Context context, ArrayList<AkunAkun> akunAkuns) {
+    public NeracaAwal_AkunAdapter(Context context, ArrayList<NeracaAwalAkun> neracaAwalAkuns) {
         this.context = context;
-        this.akunAkuns = akunAkuns;
+        this.neracaAwalAkuns = neracaAwalAkuns;
     }
 
     @Override
-    public Akun_AkunAdapter.CustomViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public NeracaAwal_AkunAdapter.CustomViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.item_akun_akun, parent, false);
+        View view = inflater.inflate(R.layout.item_neraca_awal_akun, parent, false);
         return new CustomViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(final Akun_AkunAdapter.CustomViewHolder holder, int position) {
-        holder.tv_akun.setText(akunAkuns.get(position).getAccount_name() + " (" + akunAkuns.get(position).getAccount_code() + ")");
-        holder.name = akunAkuns.get(position).getAccount_name();
-        holder.code = akunAkuns.get(position).getAccount_code();
+    public void onBindViewHolder(final NeracaAwal_AkunAdapter.CustomViewHolder holder, int position) {
+        holder.tv_akun.setText(neracaAwalAkuns.get(position).getAccount_name());
+
+        String pos = neracaAwalAkuns.get(position).getPosition();
+        if (pos.equals("Debit")) {
+            holder.tv_position.setTextColor(context.getResources().getColor(R.color.text_red));
+        } else {
+            holder.tv_position.setTextColor(context.getResources().getColor(R.color.text_green));
+        }
+        holder.tv_position.setText(String.format("(%s)", pos.substring(0, 1)));
+
+        DecimalFormat fmt = new DecimalFormat();
+        DecimalFormatSymbols fmts = new DecimalFormatSymbols();
+
+        fmts.setGroupingSeparator('.');
+        fmt.setGroupingSize(3);
+        fmt.setGroupingUsed(true);
+        fmt.setDecimalFormatSymbols(fmts);
+
+        ArrayList<NeracaAwalBalance> neracaAwalBalances = neracaAwalAkuns.get(position).getNeracaAwalBalances();
+
+        if (!neracaAwalBalances.isEmpty()) {
+            holder.tv_amount.setText(fmt.format(neracaAwalBalances.get(0).getAmount()));
+            holder.tv_date.setText(neracaAwalBalances.get(0).getDate());
+        }
+
         colors = new ArrayList<Integer>();
 
         colors.add(context.getResources().getColor(R.color.colorPastel_1));
@@ -79,22 +106,22 @@ public class Akun_AkunAdapter extends RecyclerView.Adapter<Akun_AkunAdapter.Cust
         Random r = new Random();
         int i = r.nextInt(colors.size());
 
-        holder.iv_circle.setColorFilter(colors.get(i));
+        holder.v_line.setBackgroundColor(colors.get(i));
     }
 
     @Override
     public int getItemCount() {
-        return akunAkuns.size();
+        return neracaAwalAkuns.size();
     }
 
     public static class CustomViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private int id;
         private String name, code;
-        private TextView tv_akun, id_klasifikasiNew, id_position;;
-        private ImageView iv_circle;
+        private TextView tv_akun, tv_amount, tv_date, tv_position, id_klasifikasiNew, id_position;;
+        private View v_line;
+        private ImageView iv_edit;
         private EditText et_nama_akun, et_kode_akun;
-        private LinearLayout ll_akun, ll_edit;
         private ArrayList<AkunClass> akunClassArrayList;
         private ArrayAdapter<AkunClass> classArrayAdapter;
         private String[] posisi = {"Debit", "Kredit"};
@@ -102,11 +129,13 @@ public class Akun_AkunAdapter extends RecyclerView.Adapter<Akun_AkunAdapter.Cust
 
         public CustomViewHolder(View itemView) {
             super(itemView);
-            ll_akun = itemView.findViewById(R.id.ll_akun);
             tv_akun = itemView.findViewById(R.id.tv_akun);
-            ll_edit = itemView.findViewById(R.id.ll_edit);
-            iv_circle = itemView.findViewById(R.id.iv_circle);
-            ll_edit.setOnClickListener(this);
+            tv_position = itemView.findViewById(R.id.tv_position);
+            tv_amount = itemView.findViewById(R.id.tv_amount);
+            tv_date = itemView.findViewById(R.id.tv_date);
+            iv_edit = itemView.findViewById(R.id.iv_edit);
+            v_line = itemView.findViewById(R.id.v_line);
+            //iv_edit.setOnClickListener(this);
         }
 
         @Override
@@ -116,7 +145,7 @@ public class Akun_AkunAdapter extends RecyclerView.Adapter<Akun_AkunAdapter.Cust
                     //show details
                     break;
                 case R.id.iv_edit:
-                    PopupMenu popupMenu = new PopupMenu(itemView.getContext(), ll_edit);
+                    PopupMenu popupMenu = new PopupMenu(itemView.getContext(), iv_edit);
                     popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                         @Override
                         public boolean onMenuItemClick(MenuItem item) {

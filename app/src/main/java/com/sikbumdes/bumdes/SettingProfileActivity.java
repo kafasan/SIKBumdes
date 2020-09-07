@@ -28,6 +28,7 @@ import com.sikbumdes.bumdes.api.RetrofitClient;
 import com.sikbumdes.bumdes.api.SharedPrefManager;
 import com.sikbumdes.bumdes.model.User;
 import com.sikbumdes.bumdes.model.UserDetailResponse;
+import com.sikbumdes.bumdes.model.UserUpdateResponse;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -129,7 +130,7 @@ public class SettingProfileActivity extends AppCompatActivity {
         }
     }
 
-    public void getUserDetail(){
+    public void getUserDetail() {
 
         loading = ProgressDialog.show(context, null, "Mohon tunggu sebentar...", true, false);
 
@@ -146,8 +147,8 @@ public class SettingProfileActivity extends AppCompatActivity {
             public void onResponse(Call<UserDetailResponse> call, Response<UserDetailResponse> response) {
                 UserDetailResponse userDetailResponse = response.body();
                 loading.dismiss();
-                if (response.isSuccessful()){
-                    if (userDetailResponse.isSuccess()){
+                if (response.isSuccessful()) {
+                    if (userDetailResponse.isSuccess()) {
                         etCompany.setText(userDetailResponse.getUserDetail().getName());
                         etAddress.setText(userDetailResponse.getUserDetail().getAddress());
                         etPhone.setText(userDetailResponse.getUserDetail().getPhone_number());
@@ -164,7 +165,7 @@ public class SettingProfileActivity extends AppCompatActivity {
         });
     }
 
-    public void editUserDetail(){
+    public void editUserDetail() {
 
         loading = ProgressDialog.show(context, null, "Mohon tunggu sebentar...", true, false);
 
@@ -173,21 +174,21 @@ public class SettingProfileActivity extends AppCompatActivity {
         String phone = etPhone.getText().toString().trim();
         String email = etEmail.getText().toString().trim();
 
-        if (company.isEmpty()){
+        if (company.isEmpty()) {
             loading.dismiss();
             tilCompany.setError("Nama Perusahaan tidak boleh kosong");
             etCompany.requestFocus();
             return;
         }
 
-        if (address.isEmpty()){
+        if (address.isEmpty()) {
             loading.dismiss();
             tilAddress.setError("Alamat Perusahaan tidak boleh kosong");
             etAddress.requestFocus();
             return;
         }
 
-        if (phone.isEmpty()){
+        if (phone.isEmpty()) {
             loading.dismiss();
             tilPhone.setError("Nomor Telepon tidak boleh kosong");
             etPhone.requestFocus();
@@ -210,14 +211,14 @@ public class SettingProfileActivity extends AppCompatActivity {
             return;
         }
 
-        if (email.isEmpty()){
+        if (email.isEmpty()) {
             loading.dismiss();
             tilEmail.setError("Email tidak boleh kosong");
             etEmail.requestFocus();
             return;
         }
 
-        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             loading.dismiss();
             tilEmail.setError("Masukkan email yang valid");
             etEmail.requestFocus();
@@ -227,28 +228,26 @@ public class SettingProfileActivity extends AppCompatActivity {
         User user = SharedPrefManager.getInstance(this).getUser();
         String token = "Bearer " + user.getToken();
 
-        Call<UserDetailResponse> call = RetrofitClient
+        Call<UserUpdateResponse> call = RetrofitClient
                 .getInstance()
                 .getApi()
-                .getUserDetail(token);
+                .updateUser(token, company, address, phone, email);
 
-        call.enqueue(new Callback<UserDetailResponse>() {
+        call.enqueue(new Callback<UserUpdateResponse>() {
             @Override
-            public void onResponse(Call<UserDetailResponse> call, Response<UserDetailResponse> response) {
-                UserDetailResponse userDetailResponse = response.body();
-                if (response.isSuccessful()){
+            public void onResponse(Call<UserUpdateResponse> call, Response<UserUpdateResponse> response) {
+                UserUpdateResponse userUpdateResponse = response.body();
+                if (response.isSuccessful()) {
                     loading.dismiss();
-                    if (userDetailResponse.isSuccess()){
-                        etCompany.setText(userDetailResponse.getUserDetail().getName());
-                        etAddress.setText(userDetailResponse.getUserDetail().getAddress());
-                        etPhone.setText(userDetailResponse.getUserDetail().getPhone_number());
-                        etEmail.setText(userDetailResponse.getUser().getEmail());
+                    if (userUpdateResponse.isSuccess()) {
+                        Toast.makeText(context, "Perubahan berhasil disimpan", Toast.LENGTH_SHORT).show();
+                        onBackPressed();
                     }
                 }
             }
 
             @Override
-            public void onFailure(Call<UserDetailResponse> call, Throwable t) {
+            public void onFailure(Call<UserUpdateResponse> call, Throwable t) {
                 loading.dismiss();
                 Toast.makeText(context, "Terjadi kesalahan. Silahkan coba lagi nanti.", Toast.LENGTH_SHORT).show();
             }

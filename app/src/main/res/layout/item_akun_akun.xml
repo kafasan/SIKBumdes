@@ -34,6 +34,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/ll_edit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="0.1"
@@ -41,7 +42,6 @@
         android:gravity="end">
 
         <ImageView
-            android:id="@+id/iv_edit"
             android:layout_width="@dimen/_11sdp"
             android:layout_height="@dimen/_11sdp"
             android:layout_marginEnd="@dimen/_6sdp"
