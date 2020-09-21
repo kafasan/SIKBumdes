@@ -26,7 +26,9 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.google.android.material.button.MaterialButton;
+import com.sikbumdes.bumdes.DataAkunActivity;
 import com.sikbumdes.bumdes.R;
 import com.sikbumdes.bumdes.api.RetrofitClient;
 import com.sikbumdes.bumdes.api.SharedPrefManager;
@@ -91,10 +93,11 @@ public class Akun_AkunAdapter extends RecyclerView.Adapter<Akun_AkunAdapter.Cust
 
         private int id;
         private String name, code;
-        private TextView tv_akun, id_klasifikasiNew, id_position;;
+        private TextView tv_akun, tv_warn, id_klasifikasiNew, id_position;
         private ImageView iv_circle;
         private EditText et_nama_akun, et_kode_akun;
-        private LinearLayout ll_akun, ll_edit;
+        private LinearLayout ll_akun, ll_edit, ll_button;
+        private LottieAnimationView av_loading_dialog;
         private ArrayList<AkunClass> akunClassArrayList;
         private ArrayAdapter<AkunClass> classArrayAdapter;
         private String[] posisi = {"Debit", "Kredit"};
@@ -115,7 +118,7 @@ public class Akun_AkunAdapter extends RecyclerView.Adapter<Akun_AkunAdapter.Cust
                 case R.id.ll_akun:
                     //show details
                     break;
-                case R.id.iv_edit:
+                case R.id.ll_edit:
                     PopupMenu popupMenu = new PopupMenu(itemView.getContext(), ll_edit);
                     popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                         @Override
@@ -156,6 +159,9 @@ public class Akun_AkunAdapter extends RecyclerView.Adapter<Akun_AkunAdapter.Cust
             Spinner classSpinner = akunDialog.findViewById(R.id.sp_class);
             et_kode_akun = akunDialog.findViewById(R.id.et_kode_akun);
             et_nama_akun = akunDialog.findViewById(R.id.et_nama_akun);
+            tv_warn = akunDialog.findViewById(R.id.tv_warn);
+            ll_button = akunDialog.findViewById(R.id.ll_button);
+            av_loading_dialog = akunDialog.findViewById(R.id.av_loading_dialog);
             Spinner posSpinner = akunDialog.findViewById(R.id.sp_position);
 
             User user = SharedPrefManager.getInstance(itemView.getContext()).getUser();
@@ -240,6 +246,10 @@ public class Akun_AkunAdapter extends RecyclerView.Adapter<Akun_AkunAdapter.Cust
         }
 
         void updateAkun(){
+            tv_warn.setVisibility(View.GONE);
+            ll_button.setVisibility(View.GONE);
+            av_loading_dialog.setVisibility(View.VISIBLE);
+            av_loading_dialog.playAnimation();
             User user = SharedPrefManager.getInstance(itemView.getContext()).getUser();
             String token = "Bearer " + user.getToken();
 
@@ -259,16 +269,34 @@ public class Akun_AkunAdapter extends RecyclerView.Adapter<Akun_AkunAdapter.Cust
                     AkunAkunUpdateResponse akunAkunUpdateResponse = response.body();
                     if (response.isSuccessful()){
                         if (akunAkunUpdateResponse.isSuccess()){
+                            /*
                             tv_akun.setText(akunAkunUpdateResponse.getAkunAkun().getAccount_name() +
                                     " (" + akunAkunUpdateResponse.getAkunAkun().getAccount_code() + ")");
+                             */
+                            Toast.makeText(itemView.getContext(), "Akun berhasil diubah", Toast.LENGTH_LONG).show();
+                            av_loading_dialog.setVisibility(View.GONE);
+                            av_loading_dialog.cancelAnimation();
                             akunDialog.dismiss();
+                            if (itemView.getContext() instanceof DataAkunActivity) {
+                                ((DataAkunActivity)itemView.getContext()).getAkunParent();
+                            }
                         }
+                    } else {
+                        av_loading_dialog.setVisibility(View.GONE);
+                        av_loading_dialog.cancelAnimation();
+                        tv_warn.setVisibility(View.VISIBLE);
+                        ll_button.setVisibility(View.VISIBLE);
+                        Toast.makeText(itemView.getContext(), "Terjadi kesalahan", Toast.LENGTH_SHORT).show();
                     }
                 }
 
                 @Override
                 public void onFailure(Call<AkunAkunUpdateResponse> call, Throwable t) {
-                    Toast.makeText(itemView.getContext(), "Terjadi kesalahan. Silahkan coba lagi nanti.", Toast.LENGTH_SHORT).show();
+                    av_loading_dialog.setVisibility(View.GONE);
+                    av_loading_dialog.cancelAnimation();
+                    tv_warn.setVisibility(View.VISIBLE);
+                    ll_button.setVisibility(View.VISIBLE);
+                    Toast.makeText(itemView.getContext(), "Terjadi kesalahan. Silahkan coba lagi nanti", Toast.LENGTH_SHORT).show();
                 }
             });
         }
@@ -289,14 +317,17 @@ public class Akun_AkunAdapter extends RecyclerView.Adapter<Akun_AkunAdapter.Cust
                     if (response.isSuccessful()){
                         if (akunDeleteResponse.isSuccess()){
                             Log.i("DELETE ACCOUNT", "Account deleted");
-                            Toast.makeText(itemView.getContext(), akunDeleteResponse.getMessage(), Toast.LENGTH_LONG).show();
+                            Toast.makeText(itemView.getContext(), "Akun berhasil dihapus", Toast.LENGTH_LONG).show();
+                            if (itemView.getContext() instanceof DataAkunActivity) {
+                                ((DataAkunActivity)itemView.getContext()).getAkunParent();
+                            }
                         }
                     }
                 }
 
                 @Override
                 public void onFailure(Call<AkunDeleteResponse> call, Throwable t) {
-                    Toast.makeText(itemView.getContext(), "Terjadi kesalahan. Silahkan coba lagi nanti.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(itemView.getContext(), "Terjadi kesalahan. Silahkan coba lagi nanti", Toast.LENGTH_SHORT).show();
                 }
             });
         }

@@ -21,11 +21,13 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.google.android.material.button.MaterialButton;
 import com.sikbumdes.bumdes.adapters.Akun_AkunAdapter;
 import com.sikbumdes.bumdes.adapters.Akun_KlasifikasiAdapter;
@@ -60,14 +62,12 @@ public class DataAkunActivity extends AppCompatActivity {
     private Dialog classDialog, akunDialog;
     private ArrayAdapter<AkunParent> arrayAdapter;
     private ArrayAdapter<AkunClass> classArrayAdapter;
-    ProgressDialog loading;
+    LottieAnimationView av_loading, av_loading_dialog;
     Context context;
 
-    TextView id_parentAkun;
-    EditText nama_klasifikasi, kode_klasifikasi;
-
-    TextView id_klasifikasi, id_position;
-    EditText nama_akun, kode_akun;
+    LinearLayout ll_button;
+    TextView id_parentAkun, id_klasifikasi, id_position, tv_warn;
+    EditText nama_akun, kode_akun, nama_klasifikasi, kode_klasifikasi;
 
     private String[] posisi = {"Debit", "Kredit"};
 
@@ -123,6 +123,8 @@ public class DataAkunActivity extends AppCompatActivity {
                 getAkunParent();
             }
         });
+
+        av_loading = findViewById(R.id.av_loading);
     }
 
     @Override
@@ -132,7 +134,9 @@ public class DataAkunActivity extends AppCompatActivity {
     }
 
     public void getAkunParent() {
-        loading = ProgressDialog.show(context, null, "Mohon tunggu sebentar...", true, false);
+        rv_akun_parent.setVisibility(View.GONE);
+        av_loading.setVisibility(View.VISIBLE);
+        av_loading.playAnimation();
 
         User user = SharedPrefManager.getInstance(this).getUser();
         String token = "Bearer " + user.getToken();
@@ -155,10 +159,17 @@ public class DataAkunActivity extends AppCompatActivity {
                         rv_akun_parent.setItemAnimator(new DefaultItemAnimator());
                         rv_akun_parent.setAdapter(akun_parentAdapter);
                         akun_parentAdapter.notifyDataSetChanged();
+                        av_loading.cancelAnimation();
+                        av_loading.setVisibility(View.GONE);
+                        rv_akun_parent.setVisibility(View.VISIBLE);
                     } else {
+                        av_loading.cancelAnimation();
+                        av_loading.setVisibility(View.GONE);
                         Toast.makeText(context, "Terjadi kesalahan", Toast.LENGTH_SHORT).show();
                     }
                 } else {
+                    av_loading.cancelAnimation();
+                    av_loading.setVisibility(View.GONE);
                     try {
                         JSONObject jObjError = new JSONObject(response.errorBody().string());
                         Toast.makeText(context, jObjError.getString("message"), Toast.LENGTH_SHORT).show();
@@ -167,13 +178,13 @@ public class DataAkunActivity extends AppCompatActivity {
                     }
                 }
                 refreshLayout.setRefreshing(false);
-                loading.dismiss();
             }
 
             @Override
             public void onFailure(Call<AkunParentResponse> call, Throwable t) {
                 refreshLayout.setRefreshing(false);
-                loading.dismiss();
+                av_loading.cancelAnimation();
+                av_loading.setVisibility(View.GONE);
                 Toast.makeText(context, "Terjadi kesalahan", Toast.LENGTH_SHORT).show();
                 Log.i("WelcomeToFacebook", t.toString());
             }
@@ -197,6 +208,9 @@ public class DataAkunActivity extends AppCompatActivity {
         Spinner parentSpinner = classDialog.findViewById(R.id.sp_parent);
         kode_klasifikasi = classDialog.findViewById(R.id.et_kode_klasifikasi);
         nama_klasifikasi = classDialog.findViewById(R.id.et_nama_klasifikasi);
+        tv_warn = classDialog.findViewById(R.id.tv_warn);
+        ll_button = classDialog.findViewById(R.id.ll_button);
+        av_loading_dialog = classDialog.findViewById(R.id.av_loading_dialog);
 
         User user = SharedPrefManager.getInstance(this).getUser();
         String token = "Bearer " + user.getToken();
@@ -261,6 +275,10 @@ public class DataAkunActivity extends AppCompatActivity {
     }
 
     public void createClassification() {
+        tv_warn.setVisibility(View.GONE);
+        ll_button.setVisibility(View.GONE);
+        av_loading_dialog.setVisibility(View.VISIBLE);
+        av_loading_dialog.playAnimation();
         User user = SharedPrefManager.getInstance(this).getUser();
         String token = "Bearer " + user.getToken();
 
@@ -281,9 +299,16 @@ public class DataAkunActivity extends AppCompatActivity {
                     if (classResponse.isSuccess()) {
                         Log.i("CLASSIFICATION", "store classification is SUCCESSFUL");
                         Toast.makeText(context, "Klasifikasi Akun berhasil ditambahkan", Toast.LENGTH_LONG).show();
+                        av_loading_dialog.setVisibility(View.GONE);
+                        av_loading_dialog.cancelAnimation();
                         classDialog.dismiss();
+                        onResume();
                     }
                 } else {
+                    av_loading_dialog.setVisibility(View.GONE);
+                    av_loading_dialog.cancelAnimation();
+                    tv_warn.setVisibility(View.VISIBLE);
+                    ll_button.setVisibility(View.VISIBLE);
                     Log.i("CLASSIFICATION", classResponse.toString());
                     Toast.makeText(context, "Terjadi kesalahan", Toast.LENGTH_SHORT).show();
                 }
@@ -292,6 +317,10 @@ public class DataAkunActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<AkunClassUpdateResponse> call, Throwable t) {
                 Log.d("CLASSIFICATION", t.toString());
+                av_loading_dialog.setVisibility(View.GONE);
+                av_loading_dialog.cancelAnimation();
+                tv_warn.setVisibility(View.VISIBLE);
+                ll_button.setVisibility(View.VISIBLE);
                 Toast.makeText(context, "Kesalahan terjadi, coba beberapa saat lagi.", Toast.LENGTH_SHORT).show();
             }
         });
@@ -314,6 +343,9 @@ public class DataAkunActivity extends AppCompatActivity {
         Spinner classSpinner = akunDialog.findViewById(R.id.sp_class);
         kode_akun = akunDialog.findViewById(R.id.et_kode_akun);
         nama_akun = akunDialog.findViewById(R.id.et_nama_akun);
+        tv_warn = akunDialog.findViewById(R.id.tv_warn);
+        ll_button = akunDialog.findViewById(R.id.ll_button);
+        av_loading_dialog = akunDialog.findViewById(R.id.av_loading_dialog);
         Spinner posSpinner = akunDialog.findViewById(R.id.sp_position);
 
         User user = SharedPrefManager.getInstance(this).getUser();
@@ -395,6 +427,10 @@ public class DataAkunActivity extends AppCompatActivity {
     }
 
     public void createAkun() {
+        tv_warn.setVisibility(View.GONE);
+        ll_button.setVisibility(View.GONE);
+        av_loading_dialog.setVisibility(View.VISIBLE);
+        av_loading_dialog.playAnimation();
         User user = SharedPrefManager.getInstance(this).getUser();
         String token = "Bearer " + user.getToken();
 
@@ -411,15 +447,32 @@ public class DataAkunActivity extends AppCompatActivity {
         call.enqueue(new Callback<AkunAkunUpdateResponse>() {
             @Override
             public void onResponse(Call<AkunAkunUpdateResponse> call, Response<AkunAkunUpdateResponse> response) {
-                Log.i("ACCOUNT", "store account is SUCCESSFUL");
-                Toast.makeText(context, "Akun berhasil ditambahkan", Toast.LENGTH_LONG).show();
-                akunDialog.dismiss();
+                AkunAkunUpdateResponse akunAkunUpdateResponse = response.body();
+                if (response.isSuccessful()) {
+                    if (akunAkunUpdateResponse.isSuccess()) {
+                        Toast.makeText(context, "Akun berhasil ditambahkan", Toast.LENGTH_LONG).show();
+                        av_loading_dialog.setVisibility(View.GONE);
+                        av_loading_dialog.cancelAnimation();
+                        akunDialog.dismiss();
+                        onResume();
+                    }
+                } else {
+                    av_loading_dialog.setVisibility(View.GONE);
+                    av_loading_dialog.cancelAnimation();
+                    tv_warn.setVisibility(View.VISIBLE);
+                    ll_button.setVisibility(View.VISIBLE);
+                    Toast.makeText(context, "Terjadi kesalahan", Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
             public void onFailure(Call<AkunAkunUpdateResponse> call, Throwable t) {
                 Log.d("ACCOUNT", t.toString());
-                Toast.makeText(context, "Kesalahan terjadi, coba beberapa saat lagi.", Toast.LENGTH_SHORT).show();
+                av_loading_dialog.setVisibility(View.GONE);
+                av_loading_dialog.cancelAnimation();
+                tv_warn.setVisibility(View.VISIBLE);
+                ll_button.setVisibility(View.VISIBLE);
+                Toast.makeText(context, "Terjadi kesalahan, coba beberapa saat lagi", Toast.LENGTH_SHORT).show();
             }
         });
     }

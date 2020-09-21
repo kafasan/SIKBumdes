@@ -40,63 +40,160 @@
                     android:src="@drawable/ic_settings"
                     android:tint="@color/black" />
 
-                <LinearLayout
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:layout_marginStart="@dimen/_10sdp"
-                    android:layout_marginEnd="@dimen/_10sdp"
-                    android:baselineAligned="false">
+                    android:layout_centerInParent="true">
+
+                    <com.facebook.shimmer.ShimmerFrameLayout
+                        android:id="@+id/sf_loading"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:orientation="vertical"
+                        app:shimmer_duration="1000">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_10sdp"
+                            android:layout_marginEnd="@dimen/_10sdp">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.3"
+                                android:orientation="vertical">
+
+                                <View
+                                    android:layout_width="@dimen/_55sdp"
+                                    android:layout_height="@dimen/_55sdp"
+                                    android:layout_gravity="center_vertical|end"
+                                    android:layout_marginEnd="@dimen/_6sdp"
+                                    android:background="@drawable/layout_circle" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginStart="@dimen/_5sdp"
+                                android:layout_weight="0.7"
+                                android:gravity="start"
+                                android:orientation="vertical">
+
+                                <View
+                                    android:layout_width="@dimen/_120sdp"
+                                    android:layout_height="@dimen/_14sdp"
+                                    android:background="@color/light_gray" />
+
+                                <View
+                                    android:layout_width="@dimen/_80sdp"
+                                    android:layout_height="@dimen/_11sdp"
+                                    android:layout_marginTop="@dimen/_2sdp"
+                                    android:background="@color/light_gray" />
+
+                                <View
+                                    android:layout_width="@dimen/_60sdp"
+                                    android:layout_height="@dimen/_12sdp"
+                                    android:layout_marginTop="@dimen/_6sdp"
+                                    android:background="@color/light_gray" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </com.facebook.shimmer.ShimmerFrameLayout>
 
                     <LinearLayout
-                        android:layout_width="0dp"
+                        android:id="@+id/ll_data"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="0.3"
-                        android:orientation="vertical">
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginEnd="@dimen/_10sdp">
 
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/iv_profile"
-                            android:layout_width="@dimen/_55sdp"
-                            android:layout_height="@dimen/_55sdp"
-                            android:layout_gravity="center_vertical|end"
-                            android:layout_marginEnd="@dimen/_6sdp"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/ic_company"
-                            app:civ_border_color="@color/colorAccent"
-                            app:civ_border_width="@dimen/_1sdp" />
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.3"
+                            android:orientation="vertical">
+
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:id="@+id/iv_profile"
+                                android:layout_width="@dimen/_55sdp"
+                                android:layout_height="@dimen/_55sdp"
+                                android:layout_gravity="center_vertical|end"
+                                android:layout_marginEnd="@dimen/_6sdp"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/ic_company"
+                                app:civ_border_color="@color/colorAccent"
+                                app:civ_border_width="@dimen/_1sdp" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="@dimen/_5sdp"
+                            android:layout_weight="0.7"
+                            android:gravity="start"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/tv_name"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/maven_pro_bold"
+                                android:text="Nama Perusahaan"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/_15ssp" />
+
+                            <TextView
+                                android:id="@+id/tv_mail"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/rubik_light"
+                                android:text="email@email.com"
+                                android:textColor="@color/dark_slate_gray"
+                                android:textSize="@dimen/_12ssp" />
+
+                            <LinearLayout
+                                android:id="@+id/ll_business"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_3sdp"
+                                android:background="?attr/selectableItemBackground"
+                                android:clickable="true"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/tv_business_name"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/rubik_regular"
+                                    android:text="Pilih Bisnis"
+                                    android:textAlignment="textEnd"
+                                    android:textColor="@color/dark_slate_gray"
+                                    android:textSize="@dimen/_13ssp" />
+
+                                <ImageView
+                                    android:layout_width="@dimen/_8sdp"
+                                    android:layout_height="@dimen/_8sdp"
+                                    android:layout_marginStart="@dimen/_4sdp"
+                                    android:layout_marginEnd="@dimen/_15sdp"
+                                    android:src="@drawable/ic_dropdown"
+                                    android:tint="@color/dark_slate_gray" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
 
                     </LinearLayout>
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginStart="@dimen/_5sdp"
-                        android:layout_weight="0.7"
-                        android:gravity="start"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/tv_name"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/maven_pro_bold"
-                            android:text="Nama Perusahaan"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/_16ssp" />
-
-                        <TextView
-                            android:id="@+id/tv_mail"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/rubik_light"
-                            android:text="email@email.com"
-                            android:textColor="@color/dark_slate_gray"
-                            android:textSize="@dimen/_13ssp" />
-
-                    </LinearLayout>
-
-                </LinearLayout>
+                </RelativeLayout>
             </RelativeLayout>
 
             <LinearLayout
@@ -148,7 +245,7 @@
                                     android:fontFamily="@font/maven_pro_medium"
                                     android:text="Data Akun"
                                     android:textColor="@color/dark_slate_gray"
-                                    android:textSize="@dimen/_14ssp" />
+                                    android:textSize="@dimen/_13ssp" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -158,7 +255,7 @@
                                     android:fontFamily="@font/rubik_regular"
                                     android:text="Kelola pos-pos akun"
                                     android:textColor="@color/dim_gray"
-                                    android:textSize="@dimen/_12ssp" />
+                                    android:textSize="@dimen/_11ssp" />
 
                             </LinearLayout>
 
@@ -217,7 +314,7 @@
                                     android:fontFamily="@font/maven_pro_medium"
                                     android:text="Neraca Awal"
                                     android:textColor="@color/dark_slate_gray"
-                                    android:textSize="@dimen/_14ssp" />
+                                    android:textSize="@dimen/_13ssp" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -227,7 +324,7 @@
                                     android:fontFamily="@font/rubik_regular"
                                     android:text="Kelola nilai neraca sebelum adanya penyesuaian"
                                     android:textColor="@color/dim_gray"
-                                    android:textSize="@dimen/_12ssp" />
+                                    android:textSize="@dimen/_11ssp" />
 
                             </LinearLayout>
 
@@ -286,7 +383,7 @@
                                     android:fontFamily="@font/maven_pro_medium"
                                     android:text="Rencana Anggaran"
                                     android:textColor="@color/dark_slate_gray"
-                                    android:textSize="@dimen/_14ssp" />
+                                    android:textSize="@dimen/_13ssp" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -296,7 +393,7 @@
                                     android:fontFamily="@font/rubik_regular"
                                     android:text="Kelola perencanaan anggaran"
                                     android:textColor="@color/dim_gray"
-                                    android:textSize="@dimen/_12ssp" />
+                                    android:textSize="@dimen/_11ssp" />
 
                             </LinearLayout>
 

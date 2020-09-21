@@ -72,4 +72,9 @@ public class AkunAkun {
     public void setPosition(String position) {
         this.position = position;
     }
+
+    @Override
+    public String toString() {
+        return account_name;
+    }
 }

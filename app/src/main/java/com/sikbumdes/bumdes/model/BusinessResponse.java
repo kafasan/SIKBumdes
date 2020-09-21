@@ -5,19 +5,19 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 
-public class AkunAkunResponse {
+public class BusinessResponse {
 
     @SerializedName("success")
     @Expose
     private boolean success;
 
-    @SerializedName("data")
+    @SerializedName("business")
     @Expose
-    private ArrayList<AkunAkun> akunAkuns;
+    private ArrayList<Business> businesses;
 
-    public AkunAkunResponse(boolean success, ArrayList<AkunAkun> akunAkuns) {
+    public BusinessResponse(boolean success, ArrayList<Business> businesses) {
         this.success = success;
-        this.akunAkuns = akunAkuns;
+        this.businesses = businesses;
     }
 
     public boolean isSuccess() {
@@ -28,11 +28,11 @@ public class AkunAkunResponse {
         this.success = success;
     }
 
-    public ArrayList<AkunAkun> getAkunAkuns() {
-        return akunAkuns;
+    public ArrayList<Business> getBusinesses() {
+        return businesses;
     }
 
-    public void setAkunAkuns(ArrayList<AkunAkun> akunAkuns) {
-        this.akunAkuns = akunAkuns;
+    public void setBusinesses(ArrayList<Business> businesses) {
+        this.businesses = businesses;
     }
 }

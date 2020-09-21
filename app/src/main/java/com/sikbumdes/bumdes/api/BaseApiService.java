@@ -7,8 +7,11 @@ import com.sikbumdes.bumdes.model.AkunClassResponse;
 import com.sikbumdes.bumdes.model.AkunClassUpdateResponse;
 import com.sikbumdes.bumdes.model.AkunDeleteResponse;
 import com.sikbumdes.bumdes.model.AkunParentResponse;
+import com.sikbumdes.bumdes.model.BusinessResponse;
+import com.sikbumdes.bumdes.model.BusinessSessionResponse;
 import com.sikbumdes.bumdes.model.LoginResponse;
 import com.sikbumdes.bumdes.model.NeracaAwalResponse;
+import com.sikbumdes.bumdes.model.NeracaAwalStoreResponse;
 import com.sikbumdes.bumdes.model.SignUpResponse;
 import com.sikbumdes.bumdes.model.UserDetailResponse;
 import com.sikbumdes.bumdes.model.UserUpdateResponse;
@@ -58,6 +61,18 @@ public interface BaseApiService {
             @Field("email") String email
     );
 
+    @GET("user/business")
+    Call<BusinessResponse> getBusiness(
+            @Header("Authorization") String token
+    );
+
+    @FormUrlEncoded
+    @POST("user/session")
+    Call<BusinessSessionResponse> storeBusiness(
+            @Header("Authorization") String token,
+            @Field("id_business") int id_business
+    );
+
     //==== AKUN ====
     @GET("parent")
     Call<AkunParentResponse> getAkunParent(
@@ -80,6 +95,11 @@ public interface BaseApiService {
     Call<AkunAkunResponse> getAkunAkun(
             @Header("Authorization") String token,
             @Path("id") int id_class
+    );
+
+    @GET("account")
+    Call<AkunAkunResponse> getAllAkun(
+            @Header("Authorization") String token
     );
 
     @FormUrlEncoded
@@ -142,5 +162,22 @@ public interface BaseApiService {
     Call<NeracaAwalResponse> getNeracaAwal(
             @Header("Authorization") String token,
             @Query("year") String year
+    );
+
+    @POST("neraca-awal")
+    Call<NeracaAwalStoreResponse> storeNeracaAwal(
+            @Header("Authorization") String token,
+            @Query("id_account") int id_account,
+            @Query("date") String date,
+            @Query("amount") String amount
+    );
+
+    @POST("neraca-awal/{id}")
+    Call<NeracaAwalStoreResponse> updateNeracaAwal(
+            @Header("Authorization") String token,
+            @Path("id") int id,
+            @Query("id_account") int id_account,
+            @Query("date") String date,
+            @Query("amount") String amount
     );
 }

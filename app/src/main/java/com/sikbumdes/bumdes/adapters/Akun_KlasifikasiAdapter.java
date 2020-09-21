@@ -24,7 +24,9 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.google.android.material.button.MaterialButton;
+import com.sikbumdes.bumdes.DataAkunActivity;
 import com.sikbumdes.bumdes.R;
 import com.sikbumdes.bumdes.api.RetrofitClient;
 import com.sikbumdes.bumdes.api.SharedPrefManager;
@@ -80,9 +82,10 @@ public class Akun_KlasifikasiAdapter extends RecyclerView.Adapter<Akun_Klasifika
 
         private int id;
         private String name, code;
-        private TextView tv_class, id_parentAkunNew;
+        private TextView tv_class, tv_warn, id_parentAkunNew;
         private EditText et_nama_klasifikasi, et_kode_klasifikasi;
-        private LinearLayout ll_akun, ll_akun_class, ll_edit;
+        private LinearLayout ll_akun, ll_akun_class, ll_edit, ll_button;
+        private LottieAnimationView av_loading_dialog;
         private RecyclerView rv_akun_akun;
         private ArrayList<AkunAkun> akunAkunArrayList;
         private ArrayList<AkunParent> akunParentArrayList;
@@ -166,7 +169,7 @@ public class Akun_KlasifikasiAdapter extends RecyclerView.Adapter<Akun_Klasifika
                     AkunAkunResponse akunAkunResponse = response.body();
                     if (response.isSuccessful()) {
                         if (akunAkunResponse.isSuccess()) {
-                            akunAkunArrayList = akunAkunResponse.getAkunClasses();
+                            akunAkunArrayList = akunAkunResponse.getAkunAkuns();
                             akun_akunAdapter = new Akun_AkunAdapter(itemView.getContext(), akunAkunArrayList);
                             RecyclerView.LayoutManager eLayoutManager = new LinearLayoutManager(itemView.getContext());
                             rv_akun_akun.setLayoutManager(eLayoutManager);
@@ -210,6 +213,9 @@ public class Akun_KlasifikasiAdapter extends RecyclerView.Adapter<Akun_Klasifika
             Spinner parentSpinner = classDialog.findViewById(R.id.sp_parent);
             et_kode_klasifikasi = classDialog.findViewById(R.id.et_kode_klasifikasi);
             et_nama_klasifikasi = classDialog.findViewById(R.id.et_nama_klasifikasi);
+            tv_warn = classDialog.findViewById(R.id.tv_warn);
+            ll_button = classDialog.findViewById(R.id.ll_button);
+            av_loading_dialog = classDialog.findViewById(R.id.av_loading_dialog);
 
             Call<AkunParentResponse> call = RetrofitClient
                     .getInstance()
@@ -274,6 +280,10 @@ public class Akun_KlasifikasiAdapter extends RecyclerView.Adapter<Akun_Klasifika
         }
 
         void updateClassification(){
+            tv_warn.setVisibility(View.GONE);
+            ll_button.setVisibility(View.GONE);
+            av_loading_dialog.setVisibility(View.VISIBLE);
+            av_loading_dialog.playAnimation();
             int id_parent = Integer.parseInt(id_parentAkunNew.getText().toString());
             name = et_nama_klasifikasi.getText().toString().trim();
             code = et_kode_klasifikasi.getText().toString().trim();
@@ -289,14 +299,32 @@ public class Akun_KlasifikasiAdapter extends RecyclerView.Adapter<Akun_Klasifika
                     AkunClassUpdateResponse akunClassUpdateResponse = response.body();
                     if (response.isSuccessful()){
                         if (akunClassUpdateResponse.isSuccess()){
+                            /*
                             tv_class.setText(String.format("%s (%s)", akunClassUpdateResponse.getAkunClass().getClassification_name(), akunClassUpdateResponse.getAkunClass().getClassification_code()));
+                            */
+                            Toast.makeText(itemView.getContext(), "Klasifikasi berhasil diubah", Toast.LENGTH_LONG).show();
+                            av_loading_dialog.setVisibility(View.GONE);
+                            av_loading_dialog.cancelAnimation();
                             classDialog.dismiss();
+                            if (itemView.getContext() instanceof DataAkunActivity) {
+                                ((DataAkunActivity)itemView.getContext()).getAkunParent();
+                            }
                         }
+                    } else {
+                        av_loading_dialog.setVisibility(View.GONE);
+                        av_loading_dialog.cancelAnimation();
+                        tv_warn.setVisibility(View.VISIBLE);
+                        ll_button.setVisibility(View.VISIBLE);
+                        Toast.makeText(itemView.getContext(), "Terjadi kesalahan", Toast.LENGTH_SHORT).show();
                     }
                 }
 
                 @Override
                 public void onFailure(Call<AkunClassUpdateResponse> call, Throwable t) {
+                    av_loading_dialog.setVisibility(View.GONE);
+                    av_loading_dialog.cancelAnimation();
+                    tv_warn.setVisibility(View.VISIBLE);
+                    ll_button.setVisibility(View.VISIBLE);
                     Toast.makeText(itemView.getContext(), "Terjadi kesalahan. Silahkan coba lagi nanti.", Toast.LENGTH_SHORT).show();
                 }
             });
@@ -315,7 +343,10 @@ public class Akun_KlasifikasiAdapter extends RecyclerView.Adapter<Akun_Klasifika
                     if (response.isSuccessful()){
                         if (akunDeleteResponse.isSuccess()){
                             Log.i("DELETE CLASSIFICATION", "Classification deleted");
-                            Toast.makeText(itemView.getContext(), akunDeleteResponse.getMessage(), Toast.LENGTH_LONG).show();
+                            Toast.makeText(itemView.getContext(), "Klasifikasi berhasil dihapus", Toast.LENGTH_LONG).show();
+                            if (itemView.getContext() instanceof DataAkunActivity) {
+                                ((DataAkunActivity)itemView.getContext()).getAkunParent();
+                            }
                         }
                     }
                 }

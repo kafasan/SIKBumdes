@@ -38,6 +38,7 @@
                         android:layout_alignParentStart="true"
                         android:layout_centerVertical="true"
                         android:layout_marginStart="@dimen/_10sdp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
                         android:clickable="true"
                         android:src="@drawable/ic_back" />
 
@@ -49,6 +50,17 @@
                         android:text="Neraca Awal"
                         android:textColor="@color/colorAccent"
                         android:textSize="@dimen/_18ssp" />
+
+                    <ImageView
+                        android:id="@+id/iv_add"
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:clickable="true"
+                        android:src="@drawable/ic_add" />
                 </RelativeLayout>
 
                 <LinearLayout
@@ -56,6 +68,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
+                    android:background="?attr/selectableItemBackground"
                     android:clickable="true"
                     android:orientation="vertical">
 
@@ -188,14 +201,30 @@
             android:scrollbarThumbHorizontal="@null"
             android:scrollbarThumbVertical="@null">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_neracaawal_parent"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_12sdp"
-                android:layout_marginEnd="@dimen/_12sdp"
-                android:nestedScrollingEnabled="false"
-                android:paddingBottom="@dimen/_10sdp" />
+                android:layout_height="match_parent">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_neracaawal_parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_12sdp"
+                    android:layout_marginEnd="@dimen/_12sdp"
+                    android:nestedScrollingEnabled="false"
+                    android:paddingBottom="@dimen/_10sdp"
+                    android:visibility="gone" />
+
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/av_loading"
+                    android:layout_width="@dimen/_160sdp"
+                    android:layout_height="@dimen/_160sdp"
+                    android:layout_centerInParent="true"
+                    android:visibility="gone"
+                    app:lottie_autoPlay="true"
+                    app:lottie_loop="true"
+                    app:lottie_rawRes="@raw/loading_circle_color" />
+            </RelativeLayout>
 
         </androidx.core.widget.NestedScrollView>
 

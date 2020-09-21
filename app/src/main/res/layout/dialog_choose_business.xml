@@ -36,7 +36,7 @@
                     android:layout_marginBottom="@dimen/_8sdp"
                     android:fontFamily="@font/maven_pro_bold"
                     android:gravity="center"
-                    android:text="Pilih Tahun"
+                    android:text="Pilih Bisnis"
                     android:textColor="@color/dim_gray"
                     android:textSize="@dimen/_14ssp" />
 
@@ -48,34 +48,25 @@
                     android:layout_marginTop="@dimen/_5sdp"
                     android:layout_marginEnd="@dimen/_10sdp"
                     android:clickable="true"
-                    android:src="@drawable/ic_close" />
+                    android:src="@drawable/ic_close"
+                    android:visibility="gone"/>
             </RelativeLayout>
 
-            <NumberPicker
-                android:id="@+id/np_year"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginStart="@dimen/_5sdp"
-                android:layout_marginEnd="@dimen/_5sdp"
-                android:solidColor="@android:color/transparent"
-                android:textAlignment="center" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_2sdp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="@dimen/_3sdp"
+                android:background="@color/colorPrimary" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_confirm"
-                android:layout_width="wrap_content"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_business"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:layout_marginBottom="@dimen/_8sdp"
-                android:fontFamily="@font/maven_pro_bold"
-                android:paddingStart="@dimen/_20sdp"
-                android:paddingEnd="@dimen/_20sdp"
-                android:text="KONFIRMASI"
-                android:textColor="@color/colorAccent"
-                android:textSize="@dimen/_14ssp"
-                app:backgroundTint="@color/colorPrimary"
-                app:cornerRadius="@dimen/_8sdp" />
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:layout_marginEnd="@dimen/_5sdp"
+                android:layout_marginBottom="@dimen/_10sdp" />
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>

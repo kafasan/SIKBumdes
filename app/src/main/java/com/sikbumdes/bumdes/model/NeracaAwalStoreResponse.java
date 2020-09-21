@@ -3,9 +3,7 @@ package com.sikbumdes.bumdes.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.util.ArrayList;
-
-public class AkunAkunResponse {
+public class NeracaAwalStoreResponse {
 
     @SerializedName("success")
     @Expose
@@ -13,11 +11,11 @@ public class AkunAkunResponse {
 
     @SerializedName("data")
     @Expose
-    private ArrayList<AkunAkun> akunAkuns;
+    private NeracaAwalBalance neracaAwalBalance;
 
-    public AkunAkunResponse(boolean success, ArrayList<AkunAkun> akunAkuns) {
+    public NeracaAwalStoreResponse(boolean success, NeracaAwalBalance neracaAwalBalance) {
         this.success = success;
-        this.akunAkuns = akunAkuns;
+        this.neracaAwalBalance = neracaAwalBalance;
     }
 
     public boolean isSuccess() {
@@ -28,11 +26,11 @@ public class AkunAkunResponse {
         this.success = success;
     }
 
-    public ArrayList<AkunAkun> getAkunAkuns() {
-        return akunAkuns;
+    public NeracaAwalBalance getNeracaAwalBalance() {
+        return neracaAwalBalance;
     }
 
-    public void setAkunAkuns(ArrayList<AkunAkun> akunAkuns) {
-        this.akunAkuns = akunAkuns;
+    public void setNeracaAwalBalance(NeracaAwalBalance neracaAwalBalance) {
+        this.neracaAwalBalance = neracaAwalBalance;
     }
 }

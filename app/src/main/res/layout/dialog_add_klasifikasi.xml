@@ -64,6 +64,7 @@
                 android:layout_marginBottom="@dimen/_6sdp"
                 android:fontFamily="@font/rubik_regular"
                 android:hint="Kode Klasifikasi Akun"
+                android:inputType="number"
                 android:textColor="@color/dark_slate_gray"
                 android:textSize="@dimen/_13ssp" />
 
@@ -77,18 +78,20 @@
                 android:textSize="@dimen/_13ssp" />
 
             <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_15sdp"
-            android:layout_marginRight="@dimen/_10sdp"
-            android:fontFamily="@font/rubik_regular"
-            android:text="Pastikan data yang ada masukkan sudah benar sebelum menyimpan data"
-            android:textAlignment="center"
-            android:textColor="@color/light_coral"
-            android:textSize="@dimen/_11ssp" />
+                android:id="@+id/tv_warn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:fontFamily="@font/rubik_regular"
+                android:text="Pastikan data yang ada masukkan sudah benar sebelum menyimpan data"
+                android:textAlignment="center"
+                android:textColor="@color/light_coral"
+                android:textSize="@dimen/_11ssp" />
 
             <LinearLayout
+                android:id="@+id/ll_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -124,6 +127,14 @@
 
             </LinearLayout>
 
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/av_loading_dialog"
+                android:layout_width="@dimen/_160sdp"
+                android:layout_height="@dimen/_71sdp"
+                android:visibility="gone"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/loading_circle_line_primary" />
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>

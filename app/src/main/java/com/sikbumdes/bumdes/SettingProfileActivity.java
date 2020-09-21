@@ -22,6 +22,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.sikbumdes.bumdes.api.RetrofitClient;
@@ -61,6 +62,8 @@ public class SettingProfileActivity extends AppCompatActivity {
         etPhone = findViewById(R.id.et_phone);
         etEmail = findViewById(R.id.et_email);
 
+        MaterialButton btn_save = findViewById(R.id.btn_save);
+        btn_save.setOnClickListener(v -> {editUserDetail();});
     }
 
     @Override
