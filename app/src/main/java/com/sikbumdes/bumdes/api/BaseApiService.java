@@ -9,6 +9,7 @@ import com.sikbumdes.bumdes.model.AkunDeleteResponse;
 import com.sikbumdes.bumdes.model.AkunParentResponse;
 import com.sikbumdes.bumdes.model.BusinessResponse;
 import com.sikbumdes.bumdes.model.BusinessSessionResponse;
+import com.sikbumdes.bumdes.model.LabaRugiResponse;
 import com.sikbumdes.bumdes.model.LoginResponse;
 import com.sikbumdes.bumdes.model.NeracaAwalResponse;
 import com.sikbumdes.bumdes.model.NeracaAwalStoreResponse;
@@ -179,5 +180,13 @@ public interface BaseApiService {
             @Query("id_account") int id_account,
             @Query("date") String date,
             @Query("amount") String amount
+    );
+
+    //==== LABA RUGI ====
+    @GET("laporan-laba-rugi")
+    Call<LabaRugiResponse> getLabaRugi(
+            @Header("Authorization") String token,
+            @Query("year") String year,
+            @Query("month") String month
     );
 }
