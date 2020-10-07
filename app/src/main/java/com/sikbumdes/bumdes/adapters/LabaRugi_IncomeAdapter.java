@@ -50,9 +50,9 @@ public class LabaRugi_IncomeAdapter extends RecyclerView.Adapter<LabaRugi_Income
         LabaRugiIncome labaRugiIncome = labaRugiIncomes.get(position);
         int i = Integer.parseInt(labaRugiIncome.getName().get(position));
 
-        for (i = 0, i <= labaRugiIncome.getName().size(), i++){holder.tv_name.setText(labaRugiIncome.getName());
-            holder.tv_name.setText(labaRugiIncome.getName());
-        }
+//        for (i = 0, i <= labaRugiIncome.getName().size(), i++){holder.tv_name.setText(labaRugiIncome.getName());
+//            holder.tv_name.setText(labaRugiIncome.getName());
+//        }
 
 
     }

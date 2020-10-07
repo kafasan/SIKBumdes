@@ -51,7 +51,7 @@
                 android:layout_marginTop="@dimen/_8sdp"
                 android:layout_marginBottom="@dimen/_5sdp"
                 android:fontFamily="@font/rubik_light"
-                android:text="Total Ekuitas Akhir Periode"
+                android:text="Modal Akhir"
                 android:textAlignment="center"
                 android:textColor="@color/dark_slate_gray"
                 android:textSize="@dimen/_10ssp" />
@@ -70,6 +70,7 @@
         </LinearLayout>
 
     </RelativeLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -127,6 +128,19 @@
                     android:textStyle="bold" />
 
             </RelativeLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:fontFamily="@font/rubik_light"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:text="(tekan untuk mengganti bulan dan tahun)"
+                android:textAlignment="center"
+                android:layout_gravity="center"
+                android:textColor="@color/dark_slate_gray"
+                android:textSize="@dimen/_10ssp" />
+
         </LinearLayout>
 
         <androidx.core.widget.NestedScrollView
@@ -138,6 +152,7 @@
             android:scrollbarThumbVertical="@null">
 
             <LinearLayout
+                android:id="@+id/ll_ekuitas"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_12sdp"
@@ -145,14 +160,6 @@
                 android:layout_marginBottom="@dimen/_8sdp"
                 android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/mitr_regular"
-                    android:text="Modal Awal"
-                    android:textColor="@color/dark_slate_gray"
-                    android:textSize="@dimen/_13ssp" />
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -162,25 +169,17 @@
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
-                    <ImageView
-                        android:layout_width="@dimen/_10sdp"
-                        android:layout_height="@dimen/_10sdp"
-                        android:layout_gravity="center_vertical"
-                        android:src="@drawable/layout_circle"
-                        android:tint="@color/colorPastel_3" />
-
                     <TextView
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_6sdp"
+                        android:fontFamily="@font/mitr_regular"
+                        android:text="Modal Awal"
                         android:layout_weight="1"
-                        android:fontFamily="@font/rubik_regular"
-                        android:text="Modal Disetor"
-                        android:textColor="@color/dim_gray"
-                        android:textSize="@dimen/_12ssp" />
+                        android:textColor="@color/dark_slate_gray"
+                        android:textSize="@dimen/_13ssp" />
 
                     <TextView
-                        android:id="@+id/tv_modalsetor"
+                        android:id="@+id/tv_modalawal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/rubik_regular"
@@ -191,58 +190,11 @@
 
                 </LinearLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginStart="@dimen/_14sdp"
-                    android:background="@color/light_gray" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_8sdp"
-                    android:fontFamily="@font/mitr_regular"
-                    android:text="Saldo Laba"
-                    android:textColor="@color/dark_slate_gray"
-                    android:textSize="@dimen/_13ssp" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginTop="@dimen/_8sdp"
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_modal"
                     android:layout_marginBottom="@dimen/_8sdp"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="@dimen/_10sdp"
-                        android:layout_height="@dimen/_10sdp"
-                        android:layout_gravity="center_vertical"
-                        android:src="@drawable/layout_circle"
-                        android:tint="@color/colorPastel_8" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_6sdp"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/rubik_regular"
-                        android:text="Saldo Laba Ditahan"
-                        android:textColor="@color/dim_gray"
-                        android:textSize="@dimen/_12ssp" />
-
-                    <TextView
-                        android:id="@+id/tv_saldotahan"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/rubik_regular"
-                        android:text="00000"
-                        android:textAlignment="textEnd"
-                        android:textColor="@color/dim_gray"
-                        android:textSize="@dimen/_12ssp" />
-
-                </LinearLayout>
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
 
                 <View
                     android:layout_width="match_parent"
@@ -259,25 +211,18 @@
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
-                    <ImageView
-                        android:layout_width="@dimen/_10sdp"
-                        android:layout_height="@dimen/_10sdp"
-                        android:layout_gravity="center_vertical"
-                        android:src="@drawable/layout_circle"
-                        android:tint="@color/colorPastel_5" />
 
                     <TextView
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_6sdp"
+                        android:fontFamily="@font/mitr_regular"
+                        android:text=" Total Penambahan Modal"
                         android:layout_weight="1"
-                        android:fontFamily="@font/rubik_regular"
-                        android:text="Saldo Laba Periode Berjalan"
-                        android:textColor="@color/dim_gray"
-                        android:textSize="@dimen/_12ssp" />
+                        android:textColor="@color/dark_slate_gray"
+                        android:textSize="@dimen/_13ssp" />
 
                     <TextView
-                        android:id="@+id/tv_saldojalan"
+                        android:id="@+id/tv_nambahmodal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/rubik_regular"
@@ -293,6 +238,16 @@
                     android:layout_height="1dp"
                     android:layout_marginStart="@dimen/_14sdp"
                     android:background="@color/light_gray" />
+
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/av_loading"
+                    android:layout_width="@dimen/_160sdp"
+                    android:layout_height="@dimen/_160sdp"
+                    android:layout_centerInParent="true"
+                    android:visibility="gone"
+                    app:lottie_autoPlay="true"
+                    app:lottie_loop="true"
+                    app:lottie_rawRes="@raw/loading_circle_color" />
 
             </LinearLayout>
 

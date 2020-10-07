@@ -4,11 +4,11 @@ import com.sikbumdes.bumdes.model.AkunAkunResponse;
 import com.sikbumdes.bumdes.model.AkunAkunUpdateResponse;
 import com.sikbumdes.bumdes.model.AkunClassUpdateResponse;
 import com.sikbumdes.bumdes.model.AkunClassResponse;
-import com.sikbumdes.bumdes.model.AkunClassUpdateResponse;
 import com.sikbumdes.bumdes.model.AkunDeleteResponse;
 import com.sikbumdes.bumdes.model.AkunParentResponse;
 import com.sikbumdes.bumdes.model.BusinessResponse;
 import com.sikbumdes.bumdes.model.BusinessSessionResponse;
+import com.sikbumdes.bumdes.model.PerubahanEkuitasResponse;
 import com.sikbumdes.bumdes.model.LabaRugiResponse;
 import com.sikbumdes.bumdes.model.LoginResponse;
 import com.sikbumdes.bumdes.model.NeracaAwalResponse;
@@ -185,6 +185,14 @@ public interface BaseApiService {
     //==== LABA RUGI ====
     @GET("laporan-laba-rugi")
     Call<LabaRugiResponse> getLabaRugi(
+            @Header("Authorization") String token,
+            @Query("year") String year,
+            @Query("month") String month
+    );
+
+    //==== EKUITAS ====
+    @GET("laporan-laba-rugi")
+    Call<PerubahanEkuitasResponse> getEkuitas(
             @Header("Authorization") String token,
             @Query("year") String year,
             @Query("month") String month
