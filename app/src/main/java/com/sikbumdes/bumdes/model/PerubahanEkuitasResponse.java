@@ -11,11 +11,11 @@ public class PerubahanEkuitasResponse {
 
     @SerializedName("data")
     @Expose
-    private PerubahanEkuitas perubahanEkuitas;
+    private PerubahanEkuitasData perubahanEkuitasData;
 
-    public PerubahanEkuitasResponse(boolean success, PerubahanEkuitas perubahanEkuitas) {
+    public PerubahanEkuitasResponse(boolean success, PerubahanEkuitasData perubahanEkuitasData) {
         this.success = success;
-        this.perubahanEkuitas = perubahanEkuitas;
+        this.perubahanEkuitasData = perubahanEkuitasData;
     }
 
     public boolean isSuccess() {
@@ -26,11 +26,11 @@ public class PerubahanEkuitasResponse {
         this.success = success;
     }
 
-    public PerubahanEkuitas getPerubahanEkuitas() {
-        return perubahanEkuitas;
+    public PerubahanEkuitasData getPerubahanEkuitasData() {
+        return perubahanEkuitasData;
     }
 
-    public void setPerubahanEkuitas(PerubahanEkuitas perubahanEkuitas) {
-        this.perubahanEkuitas = perubahanEkuitas;
+    public void setPerubahanEkuitasData(PerubahanEkuitasData perubahanEkuitasData) {
+        this.perubahanEkuitasData = perubahanEkuitasData;
     }
 }

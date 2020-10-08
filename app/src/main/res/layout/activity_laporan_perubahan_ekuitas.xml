@@ -48,6 +48,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
                 android:layout_marginTop="@dimen/_8sdp"
                 android:layout_marginBottom="@dimen/_5sdp"
                 android:fontFamily="@font/rubik_light"
@@ -132,12 +133,12 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_5sdp"
                 android:layout_marginBottom="@dimen/_5sdp"
                 android:fontFamily="@font/rubik_light"
-                android:layout_marginTop="@dimen/_5sdp"
                 android:text="(tekan untuk mengganti bulan dan tahun)"
                 android:textAlignment="center"
-                android:layout_gravity="center"
                 android:textColor="@color/dark_slate_gray"
                 android:textSize="@dimen/_10ssp" />
 
@@ -172,9 +173,9 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:fontFamily="@font/mitr_regular"
                         android:text="Modal Awal"
-                        android:layout_weight="1"
                         android:textColor="@color/dark_slate_gray"
                         android:textSize="@dimen/_13ssp" />
 
@@ -192,9 +193,9 @@
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_modal"
-                    android:layout_marginBottom="@dimen/_8sdp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_8sdp" />
 
                 <View
                     android:layout_width="match_parent"
@@ -215,9 +216,9 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:fontFamily="@font/mitr_regular"
                         android:text=" Total Penambahan Modal"
-                        android:layout_weight="1"
                         android:textColor="@color/dark_slate_gray"
                         android:textSize="@dimen/_13ssp" />
 

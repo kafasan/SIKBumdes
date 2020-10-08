@@ -338,7 +338,6 @@ public class NeracaAwal_AkunAdapter extends RecyclerView.Adapter<NeracaAwal_Akun
                         av_loading_dialog.cancelAnimation();
                         tv_warn.setVisibility(View.VISIBLE);
                         ll_button.setVisibility(View.VISIBLE);
-                        Log.i("NERACA_AWAL ", neracaAwalStoreResponse.toString());
                         Toast.makeText(itemView.getContext(), "Terjadi kesalahan", Toast.LENGTH_SHORT).show();
                     }
                 }

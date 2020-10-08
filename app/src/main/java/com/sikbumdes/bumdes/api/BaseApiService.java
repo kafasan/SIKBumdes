@@ -18,6 +18,7 @@ import com.sikbumdes.bumdes.model.UserDetailResponse;
 import com.sikbumdes.bumdes.model.UserUpdateResponse;
 
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -165,12 +166,13 @@ public interface BaseApiService {
             @Query("year") String year
     );
 
+    @FormUrlEncoded
     @POST("neraca-awal")
     Call<NeracaAwalStoreResponse> storeNeracaAwal(
             @Header("Authorization") String token,
-            @Query("id_account") int id_account,
-            @Query("date") String date,
-            @Query("amount") String amount
+            @Field("id_account") int id_account,
+            @Field("date") String date,
+            @Field("amount") String amount
     );
 
     @POST("neraca-awal/{id}")
@@ -191,7 +193,7 @@ public interface BaseApiService {
     );
 
     //==== EKUITAS ====
-    @GET("laporan-laba-rugi")
+    @GET("perubahan-ekuitas")
     Call<PerubahanEkuitasResponse> getEkuitas(
             @Header("Authorization") String token,
             @Query("year") String year,

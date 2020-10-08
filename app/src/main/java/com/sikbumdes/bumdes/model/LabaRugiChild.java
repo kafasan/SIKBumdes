@@ -5,11 +5,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 
-public class LabaRugiIncome {
-
-    @SerializedName("classification")
-    @Expose
-    private String class_name;
+public class LabaRugiChild {
 
     @SerializedName("name")
     @Expose
@@ -23,24 +19,10 @@ public class LabaRugiIncome {
     @Expose
     private ArrayList<Integer> balance;
 
-    @SerializedName("total")
-    @Expose
-    private int total;
-
-    public LabaRugiIncome(String class_name, ArrayList<String> name, ArrayList<String> code, ArrayList<Integer> balance, int total) {
-        this.class_name = class_name;
+    public LabaRugiChild(ArrayList<String> name, ArrayList<String> code, ArrayList<Integer> balance) {
         this.name = name;
         this.code = code;
         this.balance = balance;
-        this.total = total;
-    }
-
-    public String getClass_name() {
-        return class_name;
-    }
-
-    public void setClass_name(String class_name) {
-        this.class_name = class_name;
     }
 
     public ArrayList<String> getName() {
@@ -65,13 +47,5 @@ public class LabaRugiIncome {
 
     public void setBalance(ArrayList<Integer> balance) {
         this.balance = balance;
-    }
-
-    public int getTotal() {
-        return total;
-    }
-
-    public void setTotal(int total) {
-        this.total = total;
     }
 }

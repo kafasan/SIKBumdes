@@ -34,6 +34,8 @@ import com.sikbumdes.bumdes.model.User;
 
 import org.json.JSONObject;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.TimeZone;
@@ -147,7 +149,7 @@ public class LaporanPerubahanEkuitasActivity extends AppCompatActivity {
                 if (response.isSuccessful()){
                     if (perubahanEkuitasResponse.isSuccess()){
                         Log.i("LOGIN CHECK", "onResponse : SUCCESSFUL");
-                        penambahanEkuitasArrayList = perubahanEkuitasResponse.getPerubahanEkuitas().getPenambahanEkuitas();
+                        penambahanEkuitasArrayList = perubahanEkuitasResponse.getPerubahanEkuitasData().getPerubahanEkuitas().getPenambahanEkuitas();
                         penambahanEkuitasAdapter = new PenambahanEkuitasAdapter(LaporanPerubahanEkuitasActivity.this, penambahanEkuitasArrayList);
                         RecyclerView.LayoutManager eLayoutManager = new LinearLayoutManager(getApplicationContext());
                         rv_modal.setLayoutManager(eLayoutManager);
@@ -157,9 +159,17 @@ public class LaporanPerubahanEkuitasActivity extends AppCompatActivity {
                         av_loading.setVisibility(View.GONE);
                         ll_ekuitas.setVisibility(View.VISIBLE);
 
-                        tv_modalawal.setText(String.valueOf(perubahanEkuitasResponse.getPerubahanEkuitas().getModal_awal()));
-                        tv_nambahmodal.setText(String.valueOf(perubahanEkuitasResponse.getPerubahanEkuitas().getTotal_penambahan()));
-                        tv_total.setText(String.valueOf(perubahanEkuitasResponse.getPerubahanEkuitas().getModal_akhir()));
+                        DecimalFormat fmt = new DecimalFormat();
+                        DecimalFormatSymbols fmts = new DecimalFormatSymbols();
+
+                        fmts.setGroupingSeparator('.');
+                        fmt.setGroupingSize(3);
+                        fmt.setGroupingUsed(true);
+                        fmt.setDecimalFormatSymbols(fmts);
+
+                        tv_modalawal.setText(fmt.format(perubahanEkuitasResponse.getPerubahanEkuitasData().getPerubahanEkuitas().getModal_awal()));
+                        tv_nambahmodal.setText(fmt.format(perubahanEkuitasResponse.getPerubahanEkuitasData().getPerubahanEkuitas().getTotal_penambahan()));
+                        tv_total.setText(fmt.format(perubahanEkuitasResponse.getPerubahanEkuitasData().getPerubahanEkuitas().getModal_akhir()));
                     }
                     else {
                         av_loading.cancelAnimation();

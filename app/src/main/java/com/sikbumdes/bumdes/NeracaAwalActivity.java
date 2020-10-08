@@ -44,6 +44,8 @@ import com.sikbumdes.bumdes.model.User;
 
 import org.json.JSONObject;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -70,7 +72,7 @@ public class NeracaAwalActivity extends AppCompatActivity {
 
     ImageView iv_back, iv_add;
     LinearLayout ll_changeyear, ll_button, ll_date;
-    TextView tv_year, id_akun, tv_date, tv_warn;
+    TextView tv_year, id_akun, tv_date, tv_warn, tv_totalkredit, tv_totaldebit;
     EditText et_amount;
     private int pYear, pMonth, pDay;
     String formatDateID, formatDateStore;
@@ -83,6 +85,8 @@ public class NeracaAwalActivity extends AppCompatActivity {
         context = this;
 
         av_loading = findViewById(R.id.av_loading);
+        tv_totalkredit = findViewById(R.id.tv_totalkredit);
+        tv_totaldebit = findViewById(R.id.tv_totaldebit);
         tv_year = findViewById(R.id.tv_year);
         tv_year.setText(String.valueOf(year));
         ll_changeyear = findViewById(R.id.ll_changeyear);
@@ -170,6 +174,15 @@ public class NeracaAwalActivity extends AppCompatActivity {
                         av_loading.cancelAnimation();
                         av_loading.setVisibility(View.GONE);
                         rv_neracaawal_parent.setVisibility(View.VISIBLE);
+
+                        DecimalFormat fmt = new DecimalFormat();
+                        DecimalFormatSymbols fmts = new DecimalFormatSymbols();
+                        fmts.setGroupingSeparator('.');
+                        fmt.setGroupingSize(3);
+                        fmt.setGroupingUsed(true);
+                        fmt.setDecimalFormatSymbols(fmts);
+                        tv_totalkredit.setText(fmt.format(neracaAwalResponse.getNeracaAwal().getTotal_kredit()));
+                        tv_totaldebit.setText(fmt.format(neracaAwalResponse.getNeracaAwal().getTotal_debit()));
                     } else {
                         av_loading.cancelAnimation();
                         av_loading.setVisibility(View.GONE);
@@ -371,8 +384,7 @@ public class NeracaAwalActivity extends AppCompatActivity {
                     av_loading_dialog.cancelAnimation();
                     tv_warn.setVisibility(View.VISIBLE);
                     ll_button.setVisibility(View.VISIBLE);
-                    Log.i("NERACA_AWAL ", neracaAwalStoreResponse.toString());
-                    Toast.makeText(context, "Terjadi kesalahan", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "Penginputan neraca awal hanya sekali dalam setahun", Toast.LENGTH_SHORT).show();
                 }
             }
 

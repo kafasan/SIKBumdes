@@ -113,10 +113,6 @@ public class LaporanLabaRugiActivity extends AppCompatActivity {
         rv_expense = findViewById(R.id.rv_biaya);
         rv_otherincome = findViewById(R.id.rv_pendapatanlain);
         rv_otherexpense = findViewById(R.id.rv_biayalain);
-        tv_totalincome = findViewById(R.id.tv_totalpendapatan);
-        tv_totalexpense = findViewById(R.id.tv_totalbiaya);
-        tv_totalotherincome = findViewById(R.id.tv_totalpendapatanlain);
-        tv_totalotherexpense = findViewById(R.id.tv_totalbiayalain);
 
     }
 

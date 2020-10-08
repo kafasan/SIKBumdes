@@ -133,12 +133,12 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_5sdp"
                 android:layout_marginBottom="@dimen/_5sdp"
                 android:fontFamily="@font/rubik_light"
-                android:layout_marginTop="@dimen/_5sdp"
                 android:text="(tekan untuk mengganti bulan dan tahun)"
                 android:textAlignment="center"
-                android:layout_gravity="center"
                 android:textColor="@color/dark_slate_gray"
                 android:textSize="@dimen/_10ssp" />
         </LinearLayout>
@@ -151,220 +151,82 @@
             android:scrollbarThumbHorizontal="@null"
             android:scrollbarThumbVertical="@null">
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_12sdp"
-                android:layout_marginEnd="@dimen/_12sdp"
-                android:orientation="vertical"
-                android:paddingBottom="@dimen/_12sdp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/mitr_regular"
-                    android:text="Pendapatan"
-                    android:textColor="@color/dark_slate_gray"
-                    android:textSize="@dimen/_13ssp" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_pendapatan"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:nestedScrollingEnabled="false" />
+                android:layout_height="match_parent">
 
                 <LinearLayout
+                    android:id="@+id/ll_data"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginTop="@dimen/_6sdp"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
+                    android:layout_marginStart="@dimen/_12sdp"
+                    android:layout_marginEnd="@dimen/_12sdp"
+                    android:orientation="vertical"
+                    android:paddingBottom="@dimen/_12sdp">
 
-                    <TextView
-                        android:layout_width="0dp"
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_income"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/mitr_regular"
-                        android:text="Total Pendapatan"
-                        android:textColor="@color/dim_gray"
-                        android:textSize="@dimen/_12ssp" />
+                        android:nestedScrollingEnabled="false" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_expense"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:nestedScrollingEnabled="false" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/mitr_regular"
+                            android:text="Laba Usaha"
+                            android:textColor="@color/dark_slate_gray"
+                            android:textSize="@dimen/_13ssp" />
+
+                        <TextView
+                            android:id="@+id/tv_labausaha"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/rubik_medium"
+                            android:text="00000"
+                            android:textAlignment="textEnd"
+                            android:textColor="@color/dark_slate_gray"
+                            android:textSize="@dimen/_13ssp" />
+                    </LinearLayout>
 
                     <TextView
-                        android:id="@+id/tv_totalpendapatan"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/rubik_medium"
-                        android:text="00000"
-                        android:textAlignment="textEnd"
-                        android:textColor="@color/dim_gray"
-                        android:textSize="@dimen/_12ssp" />
-                </LinearLayout>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_8sdp"
-                    android:fontFamily="@font/mitr_regular"
-                    android:text="Biaya"
-                    android:textColor="@color/dark_slate_gray"
-                    android:textSize="@dimen/_13ssp" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_biaya"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:nestedScrollingEnabled="false" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginTop="@dimen/_6sdp"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_marginTop="@dimen/_8sdp"
                         android:fontFamily="@font/mitr_regular"
-                        android:text="Total Biaya"
-                        android:textColor="@color/dim_gray"
-                        android:textSize="@dimen/_12ssp" />
-
-                    <TextView
-                        android:id="@+id/tv_totalbiaya"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/rubik_medium"
-                        android:text="00000"
-                        android:textAlignment="textEnd"
-                        android:textColor="@color/dim_gray"
-                        android:textSize="@dimen/_12ssp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginTop="@dimen/_8sdp"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/mitr_regular"
-                        android:text="Laba Usaha"
+                        android:text="Pendapatan dan Biaya Lainnya"
                         android:textColor="@color/dark_slate_gray"
                         android:textSize="@dimen/_13ssp" />
 
-                    <TextView
-                        android:id="@+id/tv_labausaha"
-                        android:layout_width="wrap_content"
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_other_income"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/rubik_medium"
-                        android:text="00000"
-                        android:textAlignment="textEnd"
-                        android:textColor="@color/dark_slate_gray"
-                        android:textSize="@dimen/_13ssp" />
-                </LinearLayout>
+                        android:nestedScrollingEnabled="false"
+                        android:visibility="gone" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_8sdp"
-                    android:fontFamily="@font/mitr_regular"
-                    android:text="Pendapatan dan Biaya Lainnya"
-                    android:textColor="@color/dark_slate_gray"
-                    android:textSize="@dimen/_13ssp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_4sdp"
-                    android:fontFamily="@font/rubik_regular"
-                    android:text="Pendapatan Lain-lain"
-                    android:textColor="@color/dim_gray"
-                    android:textSize="@dimen/_12ssp" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_pendapatanlain"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:nestedScrollingEnabled="false" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginTop="@dimen/_6sdp"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="0dp"
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_other_expense"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/mitr_regular"
-                        android:text="Total Pendapatan Lainnya"
-                        android:textColor="@color/dim_gray"
-                        android:textSize="@dimen/_12ssp" />
+                        android:nestedScrollingEnabled="false"
+                        android:visibility="gone" />
 
-                    <TextView
-                        android:id="@+id/tv_totalpendapatanlain"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/rubik_medium"
-                        android:text="00000"
-                        android:textAlignment="textEnd"
-                        android:textColor="@color/dim_gray"
-                        android:textSize="@dimen/_12ssp" />
-                </LinearLayout>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_4sdp"
-                    android:fontFamily="@font/rubik_regular"
-                    android:text="Biaya Lain-lain"
-                    android:textColor="@color/dim_gray"
-                    android:textSize="@dimen/_12ssp" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_biayalain"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:nestedScrollingEnabled="false" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginTop="@dimen/_6sdp"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/mitr_regular"
-                        android:text="Total Biaya Lainnya"
-                        android:textColor="@color/dim_gray"
-                        android:textSize="@dimen/_12ssp" />
-
-                    <TextView
-                        android:id="@+id/tv_totalbiayalain"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/rubik_medium"
-                        android:text="00000"
-                        android:textAlignment="textEnd"
-                        android:textColor="@color/dim_gray"
-                        android:textSize="@dimen/_12ssp" />
                 </LinearLayout>
 
                 <com.airbnb.lottie.LottieAnimationView
@@ -377,7 +239,7 @@
                     app:lottie_loop="true"
                     app:lottie_rawRes="@raw/loading_circle_color" />
 
-            </LinearLayout>
+            </RelativeLayout>
 
         </androidx.core.widget.NestedScrollView>
     </LinearLayout>

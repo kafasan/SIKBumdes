@@ -12,6 +12,8 @@ import com.sikbumdes.bumdes.R;
 import com.sikbumdes.bumdes.model.LabaRugiIncome;
 import com.sikbumdes.bumdes.model.PenambahanEkuitas;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -39,8 +41,16 @@ public class PenambahanEkuitasAdapter extends RecyclerView.Adapter<PenambahanEku
     @Override
     public void onBindViewHolder(final PenambahanEkuitasAdapter.CustomViewHolder holder, int position) {
         PenambahanEkuitas penambahanEkuitas = penambahanEkuitasArrayList.get(position);
+
+        DecimalFormat fmt = new DecimalFormat();
+        DecimalFormatSymbols fmts = new DecimalFormatSymbols();
+        fmts.setGroupingSeparator('.');
+        fmt.setGroupingSize(3);
+        fmt.setGroupingUsed(true);
+        fmt.setDecimalFormatSymbols(fmts);
+
         holder.tv_name.setText(penambahanEkuitas.getName());
-        holder.tv_amount.setText(Integer.valueOf(penambahanEkuitas.getName()));
+        holder.tv_amount.setText(fmt.format(penambahanEkuitas.getAmount()));
         colors = new ArrayList<Integer>();
 
         colors.add(context.getResources().getColor(R.color.colorPastel_1));
