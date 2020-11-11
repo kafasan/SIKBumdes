@@ -6,6 +6,7 @@ import com.sikbumdes.bumdes.model.AkunClassUpdateResponse;
 import com.sikbumdes.bumdes.model.AkunClassResponse;
 import com.sikbumdes.bumdes.model.AkunDeleteResponse;
 import com.sikbumdes.bumdes.model.AkunParentResponse;
+import com.sikbumdes.bumdes.model.BukuBesarResponse;
 import com.sikbumdes.bumdes.model.BusinessResponse;
 import com.sikbumdes.bumdes.model.BusinessSessionResponse;
 import com.sikbumdes.bumdes.model.PerubahanEkuitasResponse;
@@ -198,5 +199,13 @@ public interface BaseApiService {
             @Header("Authorization") String token,
             @Query("year") String year,
             @Query("month") String month
+    );
+
+    //==== BUKU BESAR ====
+    @GET("buku-besar")
+    Call<BukuBesarResponse> getBukuBesar(
+            @Header("Authorization") String token,
+            @Query("year") String year,
+            @Query("akun") String id_account
     );
 }
