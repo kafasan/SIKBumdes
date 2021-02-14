@@ -172,7 +172,7 @@ public class DataAkunActivity extends AppCompatActivity {
                     av_loading.setVisibility(View.GONE);
                     try {
                         JSONObject jObjError = new JSONObject(response.errorBody().string());
-                        Toast.makeText(context, jObjError.getString("message"), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, jObjError.toString(), Toast.LENGTH_SHORT).show();
                     } catch (Exception e) {
                         Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
                     }

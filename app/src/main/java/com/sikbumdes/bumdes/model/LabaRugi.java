@@ -11,15 +11,15 @@ public class LabaRugi {
     @Expose
     private ArrayList<LabaRugiIncome> incomeArrayList;
 
-    @SerializedName("income")
+    @SerializedName("expense")
     @Expose
     private ArrayList<LabaRugiExpense> expenseArrayList;
 
-    @SerializedName("income")
+    @SerializedName("other_income")
     @Expose
     private ArrayList<LabaRugiOtherIncome> otherIncomeArrayList;
 
-    @SerializedName("income")
+    @SerializedName("other_expense")
     @Expose
     private ArrayList<LabaRugiOtherExpense> otherExpenseArrayList;
 

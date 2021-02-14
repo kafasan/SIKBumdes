@@ -41,6 +41,13 @@ public class BukuBesarAdapter extends RecyclerView.Adapter<BukuBesarAdapter.Cust
     @Override
     public void onBindViewHolder(final BukuBesarAdapter.CustomViewHolder holder, int position) {
         BukuBesar bukuBesar = bukuBesarArrayList.get(position);
+
+        if (position % 2 == 0) {
+            holder.ll_buku.setBackgroundColor(context.getResources().getColor(R.color.white_smoke));
+        } else {
+            holder.ll_buku.setBackgroundColor(context.getResources().getColor(R.color.light_gray));
+        }
+
         holder.tv_date.setText(bukuBesar.getDate());
         holder.tv_keterangan.setText(bukuBesar.getDescription());
 
@@ -55,13 +62,13 @@ public class BukuBesarAdapter extends RecyclerView.Adapter<BukuBesarAdapter.Cust
         String pos = bukuBesar.getPosition();
         if (pos.equals("Debit")) {
             holder.tv_debit.setText(fmt.format(bukuBesar.getAmount()));
-            holder.tv_kredit.setText(0);
+            holder.tv_kredit.setText("0");
         } else if (pos.equals("Kredit")){
             holder.tv_kredit.setText(fmt.format(bukuBesar.getAmount()));
-            holder.tv_debit.setText(0);
+            holder.tv_debit.setText("0");
         } else {
-            holder.tv_debit.setText(0);
-            holder.tv_kredit.setText(0);
+            holder.tv_debit.setText("0");
+            holder.tv_kredit.setText("0");
         }
 
         holder.tv_saldo.setText(fmt.format(bukuBesar.getSaldo()));
@@ -75,15 +82,18 @@ public class BukuBesarAdapter extends RecyclerView.Adapter<BukuBesarAdapter.Cust
     public static class CustomViewHolder extends RecyclerView.ViewHolder {
 
         private TextView tv_date, tv_keterangan, tv_debit, tv_kredit, tv_saldo;
+        private LinearLayout ll_buku;
         private ProgressBar pb_loading;
         private String pos;
 
         public CustomViewHolder(View itemView) {
             super(itemView);
+            ll_buku = itemView.findViewById(R.id.ll_buku);
             tv_date = itemView.findViewById(R.id.tv_date);
             tv_keterangan = itemView.findViewById(R.id.tv_keterangan);
             tv_debit = itemView.findViewById(R.id.tv_debit);
             tv_kredit = itemView.findViewById(R.id.tv_kredit);
+            tv_saldo = itemView.findViewById(R.id.tv_saldo);
 //            pb_loading = itemView.findViewById(R.id.pb_loading);
 
         }

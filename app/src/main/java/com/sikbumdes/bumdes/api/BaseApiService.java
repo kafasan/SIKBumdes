@@ -9,6 +9,7 @@ import com.sikbumdes.bumdes.model.AkunParentResponse;
 import com.sikbumdes.bumdes.model.BukuBesarResponse;
 import com.sikbumdes.bumdes.model.BusinessResponse;
 import com.sikbumdes.bumdes.model.BusinessSessionResponse;
+import com.sikbumdes.bumdes.model.JurnalResponse;
 import com.sikbumdes.bumdes.model.PerubahanEkuitasResponse;
 import com.sikbumdes.bumdes.model.LabaRugiResponse;
 import com.sikbumdes.bumdes.model.LoginResponse;
@@ -207,5 +208,14 @@ public interface BaseApiService {
             @Header("Authorization") String token,
             @Query("year") String year,
             @Query("akun") String id_account
+    );
+
+    //==== JURNAL ====
+    @GET("jurnal-umum")
+    Call<JurnalResponse> getJurnal(
+            @Header("Authorization") String token,
+            @Query("year") String year,
+            @Query("month") String month,
+            @Query("day") String day
     );
 }

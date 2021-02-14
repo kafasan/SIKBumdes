@@ -7,6 +7,10 @@ import java.util.ArrayList;
 
 public class LabaRugiExpense {
 
+    @SerializedName("classification")
+    @Expose
+    private String class_name;
+
     @SerializedName("name")
     @Expose
     private ArrayList<String> name;
@@ -19,10 +23,24 @@ public class LabaRugiExpense {
     @Expose
     private ArrayList<Integer> balance;
 
-    public LabaRugiExpense(ArrayList<String> name, ArrayList<String> code, ArrayList<Integer> balance) {
+    @SerializedName("total")
+    @Expose
+    private int total;
+
+    public LabaRugiExpense(String class_name, ArrayList<String> name, ArrayList<String> code, ArrayList<Integer> balance, int total) {
+        this.class_name = class_name;
         this.name = name;
         this.code = code;
         this.balance = balance;
+        this.total = total;
+    }
+
+    public String getClass_name() {
+        return class_name;
+    }
+
+    public void setClass_name(String class_name) {
+        this.class_name = class_name;
     }
 
     public ArrayList<String> getName() {
@@ -47,5 +65,13 @@ public class LabaRugiExpense {
 
     public void setBalance(ArrayList<Integer> balance) {
         this.balance = balance;
+    }
+
+    public int getTotal() {
+        return total;
+    }
+
+    public void setTotal(int total) {
+        this.total = total;
     }
 }

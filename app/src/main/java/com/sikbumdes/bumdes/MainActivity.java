@@ -117,7 +117,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(new Intent(MainActivity.this, RencanaAnggaranActivity.class));
                 break;
             case R.id.cv_jurnal:
-                startActivity(new Intent(MainActivity.this, JurnalActivity.class));
+                startActivity(new Intent(MainActivity.this, Jurnal2Activity.class));
                 break;
             case R.id.cv_buku_besar:
                 startActivity(new Intent(MainActivity.this, BukuBesarActivity.class));

@@ -22,13 +22,13 @@ public class BukuBesar {
 
     @SerializedName("amount")
     @Expose
-    private int amount;
+    private String amount;
 
     @SerializedName("saldo")
     @Expose
     private int saldo;
 
-    public BukuBesar(String date, String description, String position, int amount, int saldo) {
+    public BukuBesar(String date, String description, String position, String amount, int saldo) {
         this.date = date;
         this.description = description;
         this.position = position;
@@ -60,11 +60,11 @@ public class BukuBesar {
         this.position = position;
     }
 
-    public int getAmount() {
+    public String getAmount() {
         return amount;
     }
 
-    public void setAmount(int amount) {
+    public void setAmount(String amount) {
         this.amount = amount;
     }
 

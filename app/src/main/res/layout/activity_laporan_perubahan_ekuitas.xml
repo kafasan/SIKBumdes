@@ -87,6 +87,7 @@
             android:layout_marginStart="@dimen/_10sdp"
             android:layout_marginTop="@dimen/_20sdp"
             android:layout_marginEnd="@dimen/_10sdp"
+            android:clickable="true"
             android:orientation="vertical">
 
             <TextView
@@ -152,93 +153,114 @@
             android:scrollbarThumbHorizontal="@null"
             android:scrollbarThumbVertical="@null">
 
-            <LinearLayout
-                android:id="@+id/ll_ekuitas"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_12sdp"
-                android:layout_marginEnd="@dimen/_12sdp"
-                android:layout_marginBottom="@dimen/_8sdp"
-                android:orientation="vertical">
+                android:layout_height="match_parent">
 
                 <LinearLayout
+                    android:id="@+id/ll_ekuitas"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginStart="@dimen/_12sdp"
+                    android:layout_marginEnd="@dimen/_12sdp"
                     android:layout_marginBottom="@dimen/_8sdp"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
+                    android:orientation="vertical">
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/mitr_regular"
-                        android:text="Modal Awal"
-                        android:textColor="@color/dark_slate_gray"
-                        android:textSize="@dimen/_13ssp" />
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:layout_marginBottom="@dimen/_4sdp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/tv_modalawal"
-                        android:layout_width="wrap_content"
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/mitr_regular"
+                            android:text="Modal Awal"
+                            android:textColor="@color/dark_slate_gray"
+                            android:textSize="@dimen/_12ssp" />
+
+                        <TextView
+                            android:id="@+id/tv_modalawal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/rubik_regular"
+                            android:text="00000"
+                            android:textAlignment="textEnd"
+                            android:textColor="@color/dim_gray"
+                            android:textSize="@dimen/_12ssp" />
+
+                    </LinearLayout>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_modal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/rubik_regular"
-                        android:text="00000"
-                        android:textAlignment="textEnd"
-                        android:textColor="@color/dim_gray"
-                        android:textSize="@dimen/_12ssp" />
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginTop="@dimen/_4sdp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
 
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/mitr_regular"
+                            android:text="Total Penambahan Modal"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/dark_slate_gray"
+                            android:textSize="@dimen/_12ssp" />
+
+                        <TextView
+                            android:id="@+id/tv_nambahmodal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/rubik_regular"
+                            android:text="00000"
+                            android:textAlignment="textEnd"
+                            android:textColor="@color/dim_gray"
+                            android:textSize="@dimen/_12ssp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginTop="@dimen/_4sdp"
+                        android:layout_marginBottom="@dimen/_8sdp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/mitr_regular"
+                            android:text="Modal Akhir"
+                            android:textColor="@color/dark_slate_gray"
+                            android:textSize="@dimen/_12ssp" />
+
+                        <TextView
+                            android:id="@+id/tv_modalakhir"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/rubik_regular"
+                            android:text="00000"
+                            android:textAlignment="textEnd"
+                            android:textColor="@color/dim_gray"
+                            android:textSize="@dimen/_12ssp" />
+
+                    </LinearLayout>
                 </LinearLayout>
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_modal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/_8sdp" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginStart="@dimen/_14sdp"
-                    android:background="@color/light_gray" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginTop="@dimen/_8sdp"
-                    android:layout_marginBottom="@dimen/_8sdp"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/mitr_regular"
-                        android:text=" Total Penambahan Modal"
-                        android:textColor="@color/dark_slate_gray"
-                        android:textSize="@dimen/_13ssp" />
-
-                    <TextView
-                        android:id="@+id/tv_nambahmodal"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/rubik_regular"
-                        android:text="00000"
-                        android:textAlignment="textEnd"
-                        android:textColor="@color/dim_gray"
-                        android:textSize="@dimen/_12ssp" />
-
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginStart="@dimen/_14sdp"
-                    android:background="@color/light_gray" />
 
                 <com.airbnb.lottie.LottieAnimationView
                     android:id="@+id/av_loading"
@@ -250,8 +272,7 @@
                     app:lottie_loop="true"
                     app:lottie_rawRes="@raw/loading_circle_color" />
 
-            </LinearLayout>
-
+            </RelativeLayout>
         </androidx.core.widget.NestedScrollView>
     </LinearLayout>
 

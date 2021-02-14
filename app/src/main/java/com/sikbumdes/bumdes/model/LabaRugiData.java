@@ -5,25 +5,12 @@ import com.google.gson.annotations.SerializedName;
 
 public class LabaRugiData {
 
-    @SerializedName("available_year")
-    @Expose
-    private int available_year;
-
     @SerializedName("laba_rugi")
     @Expose
     private LabaRugi labaRugi;
 
-    public LabaRugiData(int available_year, LabaRugi labaRugi) {
-        this.available_year = available_year;
+    public LabaRugiData(LabaRugi labaRugi) {
         this.labaRugi = labaRugi;
-    }
-
-    public int getAvailable_year() {
-        return available_year;
-    }
-
-    public void setAvailable_year(int available_year) {
-        this.available_year = available_year;
     }
 
     public LabaRugi getLabaRugi() {

@@ -42,11 +42,11 @@ import java.util.TimeZone;
 
 public class LaporanPerubahanEkuitasActivity extends AppCompatActivity {
 
-    ImageView back;
-    TextView tv_month, tv_year, tv_modalawal, tv_nambahmodal, tv_total;
-//    Context context;
-    LinearLayout ll_ekuitas;
-    LottieAnimationView av_loading, av_loading_dialog;
+    ImageView iv_back;
+    TextView tv_month, tv_year, tv_modalawal, tv_nambahmodal, tv_total, tv_modalakhir;
+    Context context;
+    LinearLayout ll_ekuitas, ll_picker;
+    LottieAnimationView av_loading;
     Dialog datePicker;
     Calendar dateNow = Calendar.getInstance(TimeZone.getDefault());
     int year = dateNow.get(Calendar.YEAR);
@@ -62,65 +62,70 @@ public class LaporanPerubahanEkuitasActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_laporan_perubahan_ekuitas);
 
-        back = findViewById(R.id.iv_back);
-        back.setOnClickListener(view -> onBackPressed());
+        context = this;
+
+        iv_back = findViewById(R.id.iv_back);
+        iv_back.setOnClickListener(view -> onBackPressed());
 
         av_loading = findViewById(R.id.av_loading);
         tv_month = findViewById(R.id.tv_month);
         tv_year = findViewById(R.id.tv_year);
         tv_month.setText(String.valueOf(month));
         tv_year.setText(String.valueOf(year));
-        tv_year.setOnClickListener(view -> {
-            datePicker = new Dialog(LaporanPerubahanEkuitasActivity.this);
-            datePicker.requestWindowFeature(Window.FEATURE_NO_TITLE);
-            datePicker.setCancelable(true);
-            datePicker.setCanceledOnTouchOutside(false);
-            datePicker.setContentView(R.layout.dialog_choose_month_year);
-            datePicker.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-
-            DisplayMetrics metrics = getResources().getDisplayMetrics();
-            int width = metrics.widthPixels;
-            int height = metrics.heightPixels;
-
-            datePicker.getWindow().setLayout(width, height);
-
-            final NumberPicker np_year = datePicker.findViewById(R.id.np_year);
-            final NumberPicker np_month = datePicker.findViewById(R.id.np_month);
-
-            np_year.setMaxValue(year + 25);
-            np_year.setMinValue(year - 25);
-            np_year.setWrapSelectorWheel(false);
-            np_year.setValue(Integer.parseInt(tv_year.getText().toString()));
-            np_year.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
-
-            np_month.setMinValue(1);
-            np_month.setMaxValue(12);
-            np_month.setWrapSelectorWheel(false);
-            np_month.setValue(Integer.parseInt(tv_month.getText().toString()));
-            np_month.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
-
-            ImageView iv_close = datePicker.findViewById(R.id.iv_close);
-            iv_close.setOnClickListener(v1 -> datePicker.dismiss());
-
-            Button btn_confirm = datePicker.findViewById(R.id.btn_confirm);
-            btn_confirm.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    tv_year.setText(String.valueOf(np_year.getValue()));
-                    tv_month.setText(String.valueOf(np_month.getValue()));
-                    datePicker.dismiss();
-                    getEkuitas();
-                }
-            });
-            datePicker.show();
-
-        });
-
         tv_modalawal = findViewById(R.id.tv_modalawal);
+        tv_modalakhir = findViewById(R.id.tv_modalakhir);
         rv_modal = findViewById(R.id.rv_modal);
         tv_nambahmodal = findViewById(R.id.tv_nambahmodal);
         tv_total = findViewById(R.id.tv_total);
         ll_ekuitas = findViewById(R.id.ll_ekuitas);
+        ll_picker = findViewById(R.id.ll_picker);
+
+        ll_picker.setOnClickListener(v -> showPicker());
+    }
+
+    public void showPicker() {
+        datePicker = new Dialog(context);
+        datePicker.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        datePicker.setCancelable(true);
+        datePicker.setCanceledOnTouchOutside(false);
+        datePicker.setContentView(R.layout.dialog_choose_month_year);
+        datePicker.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+
+        DisplayMetrics metrics = getResources().getDisplayMetrics();
+        int width = metrics.widthPixels;
+        int height = metrics.heightPixels;
+
+        datePicker.getWindow().setLayout(width, height);
+
+        final NumberPicker np_year = datePicker.findViewById(R.id.np_year);
+        final NumberPicker np_month = datePicker.findViewById(R.id.np_month);
+
+        np_year.setMaxValue(year + 25);
+        np_year.setMinValue(year - 25);
+        np_year.setWrapSelectorWheel(false);
+        np_year.setValue(Integer.parseInt(tv_year.getText().toString()));
+        np_year.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
+
+        np_month.setMinValue(1);
+        np_month.setMaxValue(12);
+        np_month.setWrapSelectorWheel(false);
+        np_month.setValue(Integer.parseInt(tv_month.getText().toString()));
+        np_month.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
+
+        ImageView iv_close = datePicker.findViewById(R.id.iv_close);
+        iv_close.setOnClickListener(v1 -> datePicker.dismiss());
+
+        Button btn_confirm = datePicker.findViewById(R.id.btn_confirm);
+        btn_confirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tv_year.setText(String.valueOf(np_year.getValue()));
+                tv_month.setText(String.valueOf(np_month.getValue()));
+                datePicker.dismiss();
+                getEkuitas();
+            }
+        });
+        datePicker.show();
     }
 
     @Override
@@ -169,6 +174,7 @@ public class LaporanPerubahanEkuitasActivity extends AppCompatActivity {
 
                         tv_modalawal.setText(fmt.format(perubahanEkuitasResponse.getPerubahanEkuitasData().getPerubahanEkuitas().getModal_awal()));
                         tv_nambahmodal.setText(fmt.format(perubahanEkuitasResponse.getPerubahanEkuitasData().getPerubahanEkuitas().getTotal_penambahan()));
+                        tv_modalakhir.setText(fmt.format(perubahanEkuitasResponse.getPerubahanEkuitasData().getPerubahanEkuitas().getModal_akhir()));
                         tv_total.setText(fmt.format(perubahanEkuitasResponse.getPerubahanEkuitasData().getPerubahanEkuitas().getModal_akhir()));
                     }
                     else {

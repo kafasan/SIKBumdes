@@ -9,43 +9,52 @@ public class LabaRugiChild {
 
     @SerializedName("name")
     @Expose
-    private ArrayList<String> name;
+    private String name;
 
     @SerializedName("code")
     @Expose
-    private ArrayList<String> code;
+    private String code;
 
     @SerializedName("ending_balance")
     @Expose
-    private ArrayList<Integer> balance;
+    private int balance;
 
-    public LabaRugiChild(ArrayList<String> name, ArrayList<String> code, ArrayList<Integer> balance) {
+    public LabaRugiChild(String name, String code, int balance) {
         this.name = name;
         this.code = code;
         this.balance = balance;
     }
 
-    public ArrayList<String> getName() {
+    public String getName() {
         return name;
     }
 
-    public void setName(ArrayList<String> name) {
+    public void setName(String name) {
         this.name = name;
     }
 
-    public ArrayList<String> getCode() {
+    public String getCode() {
         return code;
     }
 
-    public void setCode(ArrayList<String> code) {
+    public void setCode(String code) {
         this.code = code;
     }
 
-    public ArrayList<Integer> getBalance() {
+    public int getBalance() {
         return balance;
     }
 
-    public void setBalance(ArrayList<Integer> balance) {
+    public void setBalance(int balance) {
         this.balance = balance;
+    }
+
+    @Override
+    public String toString() {
+        return "Laba{" +
+                "names='" + name + '\'' +
+                ", codes='" + code + '\'' +
+                ", amounts='" + balance + '\'' +
+                '}';
     }
 }

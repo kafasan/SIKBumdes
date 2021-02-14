@@ -1,44 +1,44 @@
 package com.sikbumdes.bumdes.adapters;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.sikbumdes.bumdes.R;
 import com.sikbumdes.bumdes.model.LabaRugiChild;
+import com.sikbumdes.bumdes.model.LabaRugiExpense;
 import com.sikbumdes.bumdes.model.LabaRugiIncome;
 
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-public class LabaRugi_IncomeAdapter extends RecyclerView.Adapter<LabaRugi_IncomeAdapter.CustomViewHolder> {
+public class LabaRugi_ExpenseAdapter extends RecyclerView.Adapter<LabaRugi_ExpenseAdapter.CustomViewHolder> {
 
     Context context;
-    private ArrayList<LabaRugiIncome> labaRugiIncomes;
+    private ArrayList<LabaRugiExpense> labaRugiExpenses;
     private ArrayList<LabaRugiChild> labaRugiChildArrayList = new ArrayList<>();
 
-    public LabaRugi_IncomeAdapter(Context context, ArrayList<LabaRugiIncome> labaRugiIncomes) {
+    public LabaRugi_ExpenseAdapter(Context context, ArrayList<LabaRugiExpense> labaRugiExpenses) {
         this.context = context;
-        this.labaRugiIncomes = labaRugiIncomes;
+        this.labaRugiExpenses = labaRugiExpenses;
     }
 
     @Override
-    public LabaRugi_IncomeAdapter.CustomViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public LabaRugi_ExpenseAdapter.CustomViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.item_laba_rugi, parent, false);
         return new CustomViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(final LabaRugi_IncomeAdapter.CustomViewHolder holder, int position) {
-        LabaRugiIncome labaRugiIncome = labaRugiIncomes.get(position);
+    public void onBindViewHolder(final LabaRugi_ExpenseAdapter.CustomViewHolder holder, int position) {
+        LabaRugiExpense labaRugiExpense = labaRugiExpenses.get(position);
         DecimalFormat fmt = new DecimalFormat();
         DecimalFormatSymbols fmts = new DecimalFormatSymbols();
         fmts.setGroupingSeparator('.');
@@ -46,15 +46,15 @@ public class LabaRugi_IncomeAdapter extends RecyclerView.Adapter<LabaRugi_Income
         fmt.setGroupingUsed(true);
         fmt.setDecimalFormatSymbols(fmts);
 
-        holder.tv_class.setText(labaRugiIncome.getClass_name());
-        holder.tv_total.setText(fmt.format(labaRugiIncome.getTotal()));
+        holder.tv_class.setText(labaRugiExpense.getClass_name());
+        holder.tv_total.setText(fmt.format(labaRugiExpense.getTotal()));
 
-        int nameArrayLength = labaRugiIncome.getName().size();
+        int nameArrayLength = labaRugiExpense.getName().size();
         int i;
 
         //asign multiple array string to new arraylist
         for (i = 0; i < nameArrayLength; i++) {
-            labaRugiChildArrayList.add(new LabaRugiChild(labaRugiIncome.getName().get(i), labaRugiIncome.getCode().get(i), labaRugiIncome.getBalance().get(i)));
+            labaRugiChildArrayList.add(new LabaRugiChild(labaRugiExpense.getName().get(i), labaRugiExpense.getCode().get(i), labaRugiExpense.getBalance().get(i)));
         }
         holder.labaRugi_childAdapter = new LabaRugi_ChildAdapter(context, labaRugiChildArrayList);
         RecyclerView.LayoutManager eLayoutManager = new LinearLayoutManager(context);
@@ -65,7 +65,7 @@ public class LabaRugi_IncomeAdapter extends RecyclerView.Adapter<LabaRugi_Income
 
     @Override
     public int getItemCount() {
-        return labaRugiIncomes.size();
+        return labaRugiExpenses.size();
     }
 
     public static class CustomViewHolder extends RecyclerView.ViewHolder {

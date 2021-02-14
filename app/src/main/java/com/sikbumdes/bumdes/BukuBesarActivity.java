@@ -3,6 +3,7 @@ package com.sikbumdes.bumdes;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -18,6 +19,7 @@ import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.NumberPicker;
@@ -26,6 +28,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.sikbumdes.bumdes.adapters.BukuBesarAdapter;
 import com.sikbumdes.bumdes.api.RetrofitClient;
 import com.sikbumdes.bumdes.api.SharedPrefManager;
@@ -37,6 +40,8 @@ import com.sikbumdes.bumdes.model.User;
 
 import org.json.JSONObject;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.TimeZone;
@@ -51,6 +56,8 @@ public class BukuBesarActivity extends AppCompatActivity {
     Spinner sp_akun;
     LinearLayout ll_changeyear, ll_akun;
     TextView tv_year, id_akun, tv_akun_name, tv_saldoawal, tv_saldoakhir;
+    HorizontalScrollView hsv_data;
+    ShimmerFrameLayout sfl_loading;
     ImageView back;
 
     private RecyclerView rv_bukubesar;
@@ -67,6 +74,8 @@ public class BukuBesarActivity extends AppCompatActivity {
 
         context = this;
 
+        hsv_data = findViewById(R.id.hsv_data);
+        sfl_loading = findViewById(R.id.sfl_loading);
         av_loading = findViewById(R.id.av_loading);
         tv_year = findViewById(R.id.tv_year);
         tv_year.setText(String.valueOf(year));
@@ -155,6 +164,8 @@ public class BukuBesarActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<AkunAkunResponse> call, Throwable t) {
+                Log.d("Pos ", "1");
+                Log.d("Pos ", t.toString());
                 Toast.makeText(context, "Terjadi kesalahan, coba beberapa saat lagi", Toast.LENGTH_SHORT).show();
             }
         });
@@ -164,10 +175,13 @@ public class BukuBesarActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        showBukuBesar();
+        //showBukuBesar();
     }
 
-    public void showBukuBesar(){
+    public void showBukuBesar() {
+        hsv_data.setVisibility(View.GONE);
+        sfl_loading.setVisibility(View.VISIBLE);
+        sfl_loading.startShimmer();
         User user = SharedPrefManager.getInstance(this).getUser();
         String token = "Bearer " + user.getToken();
 
@@ -180,9 +194,9 @@ public class BukuBesarActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<BukuBesarResponse> call, Response<BukuBesarResponse> response) {
                 BukuBesarResponse bukuBesarResponse = response.body();
-                if (response.isSuccessful()){
+                if (response.isSuccessful()) {
                     Log.i("RESPONSE CHECK", "onResponse : SUCCESSFUL");
-                    if (bukuBesarResponse.isSuccess()){
+                    if (bukuBesarResponse.isSuccess()) {
                         Log.i("CHECK", "onResponse : SUCCESSFUL");
                         bukuBesarArrayList = bukuBesarResponse.getBukuBesarData().getBukuBesarArrayList();
                         bukuBesarAdapter = new BukuBesarAdapter(context, bukuBesarArrayList);
@@ -190,12 +204,32 @@ public class BukuBesarActivity extends AppCompatActivity {
                         rv_bukubesar.setLayoutManager(layoutManager);
                         rv_bukubesar.setAdapter(bukuBesarAdapter);
                         bukuBesarAdapter.notifyDataSetChanged();
-                        tv_saldoawal.setText(bukuBesarResponse.getBukuBesarData().getBukuBesarLogs().getSaldo_awal());
-                        tv_saldoakhir.setText(bukuBesarResponse.getBukuBesarData().getBukuBesarLogs().getSaldo_akhir());
+
+                        DecimalFormat fmt = new DecimalFormat();
+                        DecimalFormatSymbols fmts = new DecimalFormatSymbols();
+
+                        fmts.setGroupingSeparator('.');
+                        fmt.setGroupingSize(3);
+                        fmt.setGroupingUsed(true);
+                        fmt.setDecimalFormatSymbols(fmts);
+
+                        tv_saldoawal.setText(fmt.format(bukuBesarResponse.getBukuBesarData().getBukuBesarLogs().getSaldo_awal()));
+                        tv_saldoakhir.setText(fmt.format(bukuBesarResponse.getBukuBesarData().getBukuBesarLogs().getSaldo_akhir()));
+                        hsv_data.setVisibility(View.VISIBLE);
+                        sfl_loading.stopShimmer();
+                        sfl_loading.setVisibility(View.GONE);
                     } else {
+                        Log.d("Pos ", "2");
+                        hsv_data.setVisibility(View.GONE);
+                        sfl_loading.stopShimmer();
+                        sfl_loading.setVisibility(View.GONE);
                         Toast.makeText(context, "Terjadi kesalahan", Toast.LENGTH_SHORT).show();
                     }
                 } else {
+                    Log.d("Pos ", "3");
+                    hsv_data.setVisibility(View.GONE);
+                    sfl_loading.stopShimmer();
+                    sfl_loading.setVisibility(View.GONE);
                     try {
                         JSONObject jObjError = new JSONObject(response.errorBody().string());
                         Toast.makeText(context, jObjError.getString("message"), Toast.LENGTH_SHORT).show();
@@ -207,6 +241,11 @@ public class BukuBesarActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<BukuBesarResponse> call, Throwable t) {
+                Log.d("Pos ", "4");
+                Log.d("Pos ", t.toString());
+                hsv_data.setVisibility(View.GONE);
+                sfl_loading.stopShimmer();
+                sfl_loading.setVisibility(View.GONE);
                 Toast.makeText(context, "Terjadi kesalahan", Toast.LENGTH_SHORT).show();
             }
         });

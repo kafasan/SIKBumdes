@@ -62,7 +62,6 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:fontFamily="@font/rubik_regular"
-                android:text="000"
                 android:textAlignment="center"
                 android:textColor="@color/colorAccent"
                 android:textSize="@dimen/_21ssp"
@@ -85,8 +84,8 @@
             android:layout_marginStart="@dimen/_10sdp"
             android:layout_marginTop="@dimen/_20sdp"
             android:layout_marginEnd="@dimen/_10sdp"
+            android:clickable="true"
             android:orientation="vertical">
-
 
             <TextView
                 android:id="@+id/tv_month"

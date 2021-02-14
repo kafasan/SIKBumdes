@@ -1,72 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/ll_akun"
+    android:id="@+id/ll_buku"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="@dimen/_6sdp"
     android:orientation="horizontal">
 
-    <LinearLayout
-        android:layout_width="0dp"
+    <TextView
+        android:id="@+id/tv_date"
+        android:layout_width="@dimen/_90sdp"
         android:layout_height="wrap_content"
-        android:layout_weight="0.9"
-        android:orientation="horizontal">
+        android:layout_marginStart="@dimen/_4sdp"
+        android:layout_marginEnd="@dimen/_4sdp"
+        android:fontFamily="@font/rubik_regular"
+        android:gravity="center"
+        android:paddingTop="@dimen/_4sdp"
+        android:paddingBottom="@dimen/_4sdp"
+        android:text="Tanggal"
+        android:textAlignment="center"
+        android:textColor="@color/gray"
+        android:textSize="@dimen/_12ssp" />
 
-        <TextView
-            android:id="@+id/tv_date"
-            android:layout_width="@dimen/_90sdp"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/rubik_regular"
-            android:gravity="center"
-            android:text="Tanggal"
-            android:textColor="@color/dark_slate_gray"
-            android:textSize="@dimen/_12ssp" />
+    <View
+        android:layout_width="@dimen/_1sdp"
+        android:layout_height="match_parent"
+        android:background="@color/gray" />
 
-        <TextView
-            android:id="@+id/tv_keterangan"
-            android:layout_width="@dimen/_130sdp"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/rubik_regular"
-            android:gravity="center_vertical"
-            android:text="Keterangan"
-            android:textColor="@color/dark_slate_gray"
-            android:textSize="@dimen/_12ssp" />
+    <TextView
+        android:id="@+id/tv_keterangan"
+        android:layout_width="@dimen/_120sdp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_4sdp"
+        android:layout_marginEnd="@dimen/_4sdp"
+        android:fontFamily="@font/rubik_regular"
+        android:gravity="center"
+        android:paddingTop="@dimen/_4sdp"
+        android:paddingBottom="@dimen/_4sdp"
+        android:text="Keterangan"
+        android:textAlignment="center"
+        android:textColor="@color/gray"
+        android:textSize="@dimen/_12ssp" />
 
-        <TextView
-            android:id="@+id/tv_debit"
-            android:layout_width="@dimen/_100sdp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:fontFamily="@font/rubik_regular"
-            android:text="Debit"
-            android:textAlignment="center"
-            android:textColor="@color/dark_slate_gray"
-            android:textSize="@dimen/_12ssp" />
+    <View
+        android:layout_width="@dimen/_1sdp"
+        android:layout_height="match_parent"
+        android:background="@color/gray" />
 
-        <TextView
-            android:id="@+id/tv_kredit"
-            android:layout_width="@dimen/_100sdp"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/rubik_regular"
-            android:gravity="center"
-            android:text="Kredit"
-            android:textAlignment="center"
-            android:textColor="@color/dark_slate_gray"
-            android:textSize="@dimen/_12ssp" />
+    <TextView
+        android:id="@+id/tv_debit"
+        android:layout_width="@dimen/_100sdp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="@dimen/_4sdp"
+        android:layout_marginEnd="@dimen/_4sdp"
+        android:fontFamily="@font/rubik_regular"
+        android:paddingTop="@dimen/_4sdp"
+        android:paddingBottom="@dimen/_4sdp"
+        android:text="Debit"
+        android:textAlignment="center"
+        android:textColor="@color/gray"
+        android:textSize="@dimen/_12ssp" />
 
-        <TextView
-            android:id="@+id/tv_amount"
-            android:layout_width="@dimen/_105sdp"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/rubik_regular"
-            android:gravity="center"
-            android:text="0000"
-            android:textAlignment="center"
-            android:textColor="@color/dark_slate_gray"
-            android:textSize="@dimen/_12ssp" />
+    <View
+        android:layout_width="@dimen/_1sdp"
+        android:layout_height="match_parent"
+        android:background="@color/gray" />
 
+    <TextView
+        android:id="@+id/tv_kredit"
+        android:layout_width="@dimen/_100sdp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_4sdp"
+        android:layout_marginEnd="@dimen/_4sdp"
+        android:fontFamily="@font/rubik_regular"
+        android:gravity="center"
+        android:paddingTop="@dimen/_4sdp"
+        android:paddingBottom="@dimen/_4sdp"
+        android:text="Kredit"
+        android:textAlignment="center"
+        android:textColor="@color/gray"
+        android:textSize="@dimen/_12ssp" />
 
-    </LinearLayout>
+    <View
+        android:layout_width="@dimen/_1sdp"
+        android:layout_height="match_parent"
+        android:background="@color/gray" />
 
+    <TextView
+        android:id="@+id/tv_saldo"
+        android:layout_width="@dimen/_105sdp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_4sdp"
+        android:layout_marginEnd="@dimen/_4sdp"
+        android:fontFamily="@font/rubik_regular"
+        android:gravity="center"
+        android:paddingTop="@dimen/_4sdp"
+        android:paddingBottom="@dimen/_4sdp"
+        android:text="0000"
+        android:textAlignment="center"
+        android:textColor="@color/gray"
+        android:textSize="@dimen/_12ssp" />
 
 </LinearLayout>
